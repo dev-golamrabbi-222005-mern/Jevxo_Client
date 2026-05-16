@@ -58,6 +58,10 @@ const Showcase = () => {
               hidden
               cursor-pointer
               hover:underline
+              hover:translate-x-2.5
+              hover:scale-110
+              transition-all
+              duration-300
             "
           >
             Explore All

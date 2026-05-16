@@ -41,7 +41,7 @@ const GrowthEngine = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden px-4 md:px-6 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-28 lg:pb-40 bg-[#020817]">
+    <section className="relative px-4 md:px-6 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-28 lg:pb-40 bg-[#020817]">
       {/* Grid Lines */}
       <div
         className="absolute inset-0 opacity-50"

@@ -44,7 +44,7 @@ const Pricing = () => {
 
   return (
     <section className="bg-[#0B0F14] py-12 md:py-16 lg:py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24">
           {plans.map((plan, i) => (
             <div

@@ -32,7 +32,7 @@ const FeaturedCaseStudy = ({ image, icons }) => {
             -translate-x-1/2
             w-[3px]
             h-full
-            bg-[#1B67FF]
+            bg-[#256AF4]
           "
         >
           <div
@@ -44,7 +44,7 @@ const FeaturedCaseStudy = ({ image, icons }) => {
               -translate-y-1/2
               size-10
               rounded-full
-              bg-[#1B67FF]
+              bg-[#256AF4]
               flex
               items-center
               justify-center
@@ -62,9 +62,10 @@ const FeaturedCaseStudy = ({ image, icons }) => {
               px-3
               py-1
               rounded-md
-              bg-[#5A5A5A]
+              bg-[#555555]
               text-white
               text-xs
+              tracking-wider
               font-medium
             "
           >
@@ -78,9 +79,10 @@ const FeaturedCaseStudy = ({ image, icons }) => {
               px-3
               py-1
               rounded-md
-              bg-[#5E89FF]
+              bg-[#4E85F3]
               text-white
               text-xs
+              tracking-wider
               font-medium
             "
           >
