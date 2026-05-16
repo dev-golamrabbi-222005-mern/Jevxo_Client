@@ -1,68 +1,58 @@
-import centerLogo from "../../assets/center-logo.png";
+import centerLogo from "../../assets/center-logo.png"
 
 const CenterCore = () => {
   return (
-    <div className="relative">
-      {/* OUTER RINGS */}
+    <div className="absolute z-20 flex items-center justify-center w-[200px] h-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      {/* SOLID BLACK/DARK SEMI-TRANSPARENT SHADE BACKING PLATE */}
       <div
         className="
-          absolute
-          top-49
-          inset-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          size-[175px]
-          rounded-full
-          border
-          border-dashed
-          border-[#1B67FF]/40
+          absolute 
+          size-[190px] 
+          rounded-full 
+          bg-[#102247]/20
+          border-white/[0.03] 
+          shadow-[inset_0_0_130px_rgba(0,0,0,0.8),0_0_20px_rgba(2,8,23,0.9)] 
+          pointer-events-none
         "
       />
 
-      <div
-        className="
-          absolute
-          inset-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          size-[180px]
-          rounded-full
-          border
-          border-dashed
-          border-[#1B67FF]/40
-        "
-      />
-
-      {/* CENTER */}
-      {/* <div
-        className="
-          relative
-          z-10
-          
-          rounded-full
-          border
-          border-[#1595FF]
-          bg-[#07172B]
-          flex
-          items-center
-          justify-center
-          shadow-[0_0_60px_rgba(0,140,255,0.45)]
-        "
-      > */}
-        <div
-          className="
-            absolute
-            inset-0
-            top-20
-            rounded-full
-            bg-[#0084FF]/10
-            blur-2xl
-          "
+      {/* SVG RING CANVAS */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 190 190"
+      >
+        <circle
+          cx="95"
+          cy="95"
+          r="90"
+          fill="none"
+          stroke="rgba(27, 103, 255, 0.4)"
+          strokeWidth="3"
+          strokeDasharray="10 7"
+          className="origin-center animate-[spin_60s_linear_infinite]"
         />
+        <circle
+          cx="95"
+          cy="95"
+          r="77"
+          fill="none"
+          stroke="rgba(27, 103, 255, 0.25)"
+          strokeWidth="3"
+          strokeDasharray="10 7"
+          className="origin-center animate-[spin_40s_linear_infinite_reverse]"
+        />
+      </svg>
 
-        <img src={centerLogo} alt="Jevxo" className="w-[150px] top-30 relative z-10" />
-      </div>
-    // </div>
+      {/* CORE LOGO BACKGROUND GLOW */}
+      <div className="absolute inset-6 rounded-full bg-[#0084FF]/20 blur-xl pointer-events-none" />
+
+      {/* CENTER LOGO */}
+      <img
+        src={centerLogo}
+        alt="Jevxo Core"
+        className="w-[120px] h-auto relative z-10 select-none object-contain hover:scale-110 transition-transform duration-500"
+      />
+    </div>
   );
 };
 

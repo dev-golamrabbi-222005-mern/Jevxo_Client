@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import heroOrbit from "../assets/hero-orbit.png";
 import PrimaryButton from "../components/shared/PrimaryButton";
 
+// Stat Card
 const StatCard = ({ value, label }) => {
   return (
     <div className="text-center">
@@ -14,8 +15,9 @@ const StatCard = ({ value, label }) => {
 };
 
 const Hero = () => {
+  //Dynamic Stars
   const stars = useMemo(() => {
-    return Array.from({ length: 100 }).map((_, i) => {
+    return Array.from({ length: 200 }).map((_, i) => {
       const random = Math.random();
       const size =
         random > 0.85
@@ -43,6 +45,7 @@ const Hero = () => {
     });
   }, []);
 
+  // Stats Data
   const statsData = [
     { id: 1, value: "500+", label: "Projects Delivered" },
     { id: 2, value: "98%", label: "Client Satisfaction" },
@@ -53,13 +56,12 @@ const Hero = () => {
     <section
       className="
         relative
-        min-h-screen
         w-full
         overflow-hidden
         bg-[#020817]
         flex
-        items-start       /* CHANGED: Align to top on mobile instead of center */
-        md:items-center   /* CHANGED: Re-center content on tablet and desktop */
+        items-start       
+        md:items-center
       "
     >
       {/* GRID BACKGROUND */}
@@ -100,10 +102,10 @@ const Hero = () => {
           mx-auto
           px-4
           md:px-6
-          pt-28            /* CHANGED: Added generous safe-gap top padding for mobile navbar clearance */
+          pt-28            
           pb-12
-          md:pt-32         /* Keeps your desktop top-spacing proportional */
-          md:pb-20
+          md:pt-32      
+          md:pb-17
         "
       >
         <div

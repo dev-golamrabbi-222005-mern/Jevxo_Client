@@ -3,7 +3,6 @@ import logo from "../../assets/logo-navbar.png";
 import PrimaryButton from "../shared/PrimaryButton";
 import { ChevronDown, Lock, Menu, X } from "lucide-react";
 
-// Maintainable navigation structure
 const NAV_LINKS = [
   { label: "The Hub", href: "#", isActive: true },
   { label: "Solutions", href: "#", hasDropdown: true },
@@ -36,7 +35,6 @@ const Navbar = () => {
           "
         >
           {/* LEFT: LOGO */}
-          {/* Added pl-3 to match the spatial flex gaps visually before the logo */}
           <div className="flex items-center md:pl-8 lg:pl-16">
             <img
               src={logo}

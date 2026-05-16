@@ -1,41 +1,27 @@
-const OrbitNode = ({ icon, title, subtitle, className = "" }) => {
-  return (
+const OrbitNode = ({ icon, title, subtitle, style }) => (
+  <div className="absolute z-30 flex flex-col items-center" style={style}>
+    {/* Circle */}
     <div
-      className={`
-        absolute
-        flex
-        flex-col
-        items-center
-        
-        ${className}
-      `}
+      className="
+        size-[88px] rounded-full
+        border border-white/10
+        bg-[#1B2527]
+        flex items-center justify-center
+        shadow-[0_0_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.07)]
+        transition-transform duration-300 hover:scale-105
+      "
     >
-      {/* CIRCLE */}
-      <div
-        className="
-          size-[100px]
-          rounded-full
-          border
-          border-[#5E7A47]/20
-          bg-[#17211C]/70
-          backdrop-blur-md
-          flex
-          items-center
-          justify-center
-          shadow-[0_0_35px_rgba(0,0,0,0.35)]
-        "
-      >
-        {icon}
-      </div>
-
-      {/* TEXT */}
-      <div className="mt-5 text-center">
-        <h3 className="text-white font-semibold text-[20px]">{title}</h3>
-
-        <p className="text-white/45 text-sm mt-1">{subtitle}</p>
-      </div>
+      {icon}
     </div>
-  );
-};
+
+    {/* Text */}
+    <div className="mt-4 text-center whitespace-nowrap">
+      <h3 className="text-white font-semibold text-[17px] tracking-wide leading-tight">
+        {title}
+      </h3>
+      <p className="text-white/40 text-xs mt-1">{subtitle}</p>
+    </div>
+  </div>
+);
 
 export default OrbitNode;
