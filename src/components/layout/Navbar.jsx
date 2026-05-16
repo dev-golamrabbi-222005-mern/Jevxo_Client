@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
 import logo from "../../assets/logo-navbar.png";
 import switchBody from "../../assets/switch-body.png";
+
 import PrimaryButton from "../shared/PrimaryButton";
+
 import { ChevronDown, Lock, Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
@@ -17,8 +21,21 @@ const ToggleSwitch = () => {
 
   return (
     <div className="flex items-center gap-3">
-      <Lock size={18} className="text-[#2E7CF6]" />
-      <div
+      <motion.div
+        animate={{
+          scale: isOn ? 1.08 : 1,
+        }}
+        transition={{
+          duration: 0.3,
+        }}
+      >
+        <Lock size={18} className="text-[#2E7CF6]" />
+      </motion.div>
+
+      <motion.div
+        whileTap={{
+          scale: 0.96,
+        }}
         onClick={() => setIsOn(!isOn)}
         className="
           w-14
@@ -33,43 +50,119 @@ const ToggleSwitch = () => {
           bg-no-repeat
           transition-all
           duration-300
+          overflow-hidden
         "
-        style={{ 
+        style={{
           backgroundImage: `url(${switchBody})`,
-          // Optional: Add a subtle grayscale or opacity filter when turned off 
-          filter: isOn ? "none" : "grayscale(30%) brightness(80%)" 
+          filter: isOn ? "none" : "grayscale(30%) brightness(80%)",
         }}
       >
-        {/* TOGGLE THUMB HANDLE */}
-        <div
-          className={`
+        {/* GLOW */}
+        <motion.div
+          animate={{
+            opacity: isOn ? 0.5 : 0,
+          }}
+          transition={{
+            duration: 0.3,
+          }}
+          className="
             absolute
-            top-1/2
+            inset-0
+            bg-[#2E7CF6]
+            blur-xl
+          "
+        />
+
+        {/* TOGGLE HANDLE */}
+        <motion.div
+          animate={{
+            x: isOn ? 24 : 0,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+          }}
+          className="
+            absolute
+            top-1
             left-1
-            -translate-y-1/2
             size-6
             rounded-full
             bg-white
             shadow-md
-            transition-all
-            duration-300
-            ease-in-out
-            ${isOn ? "translate-x-6" : "translate-x-0"}
-          `}
+          "
         />
-      </div>
+      </motion.div>
     </div>
   );
 };
 
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // ANIMATION VARIANTS
+  const mobileMenuVariants = {
+    hidden: {
+      opacity: 0,
+      y: -20,
+      scale: 0.98,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.35,
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.06,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -10,
+      scale: 0.98,
+      transition: {
+        duration: 0.25,
+      },
+    },
+  };
+
+  const navItemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 10,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.35,
+      },
+    },
+  };
+
   return (
-    <header className="w-full fixed top-0 left-0 z-50">
+    <motion.header
+      initial={{
+        opacity: 0,
+        y: -30,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="w-full fixed top-0 left-0 z-50"
+    >
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6">
-        <nav
+        <motion.nav
+          whileHover={{
+            borderColor: "rgba(255,255,255,0.16)",
+          }}
           className="
             h-auto
             rounded-2xl
@@ -84,78 +177,189 @@ const Navbar = () => {
             py-3
             md:py-2
             relative
+            transition-all
+            duration-300
           "
         >
           {/* LEFT: LOGO */}
-          <div className="flex items-center md:pl-8 lg:pl-16">
+          <motion.div
+            whileHover={{
+              scale: 1.03,
+            }}
+            className="flex items-center md:pl-8 lg:pl-16"
+          >
             <img
               src={logo}
               alt="Jevxo Logo"
               className="h-6 w-auto object-contain"
             />
-          </div>
+          </motion.div>
 
           {/* DESKTOP NAV LINKS */}
           <ul className="hidden lg:flex items-center gap-10 text-sm text-white/80">
             {NAV_LINKS.map((link, index) => (
-              <li
+              <motion.li
                 key={index}
+                whileHover={{
+                  y: -2,
+                  scale: 1.03,
+                }}
+                transition={{
+                  duration: 0.2,
+                }}
                 className={`flex items-center gap-1 cursor-pointer transition duration-200 ${
                   link.isActive ? "text-[#2E7CF6]" : "hover:text-white"
                 }`}
               >
                 {link.label}
-                {link.hasDropdown && <ChevronDown size={16} />}
-              </li>
+
+                {link.hasDropdown && (
+                  <motion.div
+                    whileHover={{
+                      rotate: 180,
+                    }}
+                    transition={{
+                      duration: 0.3,
+                    }}
+                  >
+                    <ChevronDown size={16} />
+                  </motion.div>
+                )}
+              </motion.li>
             ))}
           </ul>
 
-          {/* RIGHT: CTA & TOGGLE ACTIONS */}
+          {/* RIGHT */}
           <div className="flex items-center gap-4">
-            <PrimaryButton className="hidden md:block">
-              Launch Your Project
-            </PrimaryButton>
-
-           <ToggleSwitch/>
-
-            {/* Mobile Burger Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-white/80 hover:text-white focus:outline-none transition p-1"
-              aria-label="Toggle Menu"
+            <motion.div
+              whileHover={{
+                y: -2,
+              }}
+              whileTap={{
+                scale: 0.97,
+              }}
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-        </nav>
-
-        {/* MOBILE & TABLET DROP-DOWN MENU */}
-        {isOpen && (
-          <div className="mt-2 w-full lg:hidden rounded-2xl border border-white/10 bg-[#0A0F1C]/95 backdrop-blur-xl p-6 shadow-xl animate-in fade-in slide-in-from-top-4 duration-200">
-            <ul className="flex flex-col gap-5 text-sm text-white/80">
-              {NAV_LINKS.map((link, index) => (
-                <li
-                  key={index}
-                  className={`flex items-center justify-between cursor-pointer py-1 transition ${
-                    link.isActive ? "text-[#2E7CF6]" : "hover:text-white"
-                  }`}
-                >
-                  <span>{link.label}</span>
-                  {link.hasDropdown && <ChevronDown size={16} />}
-                </li>
-              ))}
-            </ul>
-
-            {/* CTA Inside Mobile Menu for Smaller viewports */}
-            <div className="mt-6 pt-6 border-t border-white/5 md:hidden">
-              <PrimaryButton className="w-full justify-center py-3">
+              <PrimaryButton className="hidden md:block">
                 Launch Your Project
               </PrimaryButton>
-            </div>
+            </motion.div>
+
+            <ToggleSwitch />
+
+            {/* MOBILE MENU BUTTON */}
+            <motion.button
+              whileTap={{
+                scale: 0.9,
+              }}
+              onClick={() => setIsOpen(!isOpen)}
+              className="
+                lg:hidden
+                text-white/80
+                hover:text-white
+                focus:outline-none
+                transition
+                p-1
+              "
+              aria-label="Toggle Menu"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={isOpen ? "close" : "menu"}
+                  initial={{
+                    rotate: -90,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    rotate: 0,
+                    opacity: 1,
+                  }}
+                  exit={{
+                    rotate: 90,
+                    opacity: 0,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                >
+                  {isOpen ? <X size={24} /> : <Menu size={24} />}
+                </motion.div>
+              </AnimatePresence>
+            </motion.button>
           </div>
-        )}
+        </motion.nav>
+
+        {/* MOBILE & TABLET MENU */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              variants={mobileMenuVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="
+                mt-2
+                w-full
+                lg:hidden
+                rounded-2xl
+                border
+                border-white/10
+                bg-[#0A0F1C]/95
+                backdrop-blur-xl
+                p-6
+                shadow-xl
+              "
+            >
+              <ul className="flex flex-col gap-5 text-sm text-white/80">
+                {NAV_LINKS.map((link, index) => (
+                  <motion.li
+                    key={index}
+                    variants={navItemVariants}
+                    whileHover={{
+                      x: 6,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                    }}
+                    className={`flex items-center justify-between cursor-pointer py-1 transition ${
+                      link.isActive ? "text-[#2E7CF6]" : "hover:text-white"
+                    }`}
+                  >
+                    <span>{link.label}</span>
+
+                    {link.hasDropdown && <ChevronDown size={16} />}
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* MOBILE CTA */}
+              <motion.div
+                variants={navItemVariants}
+                className="
+                  mt-6
+                  pt-6
+                  border-t
+                  border-white/5
+                  md:hidden
+                "
+              >
+                <motion.div
+                  whileHover={{
+                    y: -2,
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                >
+                  <PrimaryButton className="w-full justify-center py-3">
+                    Launch Your Project
+                  </PrimaryButton>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

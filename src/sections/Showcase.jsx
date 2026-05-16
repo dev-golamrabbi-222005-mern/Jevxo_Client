@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 import SectionTitle from "../components/shared/SectionTitle";
 import ShowcaseCard from "../components/ui/ShowcaseCard";
@@ -6,21 +7,58 @@ import FeaturedCaseStudy from "../components/ui/FeaturedCaseStudy";
 
 import techLine from "../assets/techline2.png";
 import ellipse from "../assets/ellipse1.png";
-
 import jsIcon from "../assets/icons/js-icon.png";
 import boxIcon from "../assets/icons/box-icon.png";
 import meshIcon from "../assets/icons/mesh-icon.png";
 import growthIcon from "../assets/icons/growth-icon.png";
 import terminalIcon from "../assets/icons/terminal-icon.png";
 import cloudIcon from "../assets/icons/cloud-icon.png";
-
 import luxePreview from "../assets/luxe-preview.png";
 import novaPreview from "../assets/nova-preview.png";
 
 const Showcase = () => {
+  const icons1 = [jsIcon, boxIcon, meshIcon];
+  const icons2 = [growthIcon, terminalIcon, cloudIcon];
 
-  const icons1 = [jsIcon, boxIcon, meshIcon]
-  const icons2 = [growthIcon, terminalIcon, cloudIcon]
+  // MODERN ANIMATION VARIANTS 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.16, 
+      },
+    },
+  };
+
+  const fadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.98, 
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.95,
+        ease: [0.16, 1, 0.3, 1], 
+      },
+    },
+  };
+
+  const floatingAnimation = {
+    animate: {
+      y: [0, -15, 0],
+      x: [0, 8, 0], 
+      rotate: [0, 2, 0],
+      transition: {
+        duration: 8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   return (
     <section
@@ -32,19 +70,48 @@ const Showcase = () => {
       "
     >
       {/* DECOR */}
-      <img src={techLine} alt="" className="absolute left-0 top-0 opacity-50" />
+      <motion.img
+        src={techLine}
+        alt=""
+        className="absolute left-0 top-0 opacity-50 pointer-events-none"
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 0.5, x: 0 }}
+        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true }}
+      />
 
-      <img src={ellipse} alt="" className="absolute right-0 top-0 opacity-40" />
+      <motion.img
+        src={ellipse}
+        alt=""
+        className="absolute right-0 top-0 opacity-40 pointer-events-none"
+        variants={floatingAnimation}
+        animate="animate"
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
         {/* HEADER */}
-        <div className="relative">
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          viewport={{ once: true }}
+        >
           <SectionTitle
             title="Our Showcase"
             subtitle="A glimpse into the empires we've built. Scroll to explore our portfolio."
           />
 
-          <button
+          <motion.button
+            whileHover={{
+              x: 8,
+              scale: 1.05,
+              color: "#4f8ff7",
+            }}
+            whileTap={{ scale: 0.96 }}
             className="
               absolute
               right-0
@@ -58,19 +125,21 @@ const Showcase = () => {
               hidden
               cursor-pointer
               hover:underline
-              hover:translate-x-2.5
-              hover:scale-110
               transition-all
               duration-300
             "
           >
             Explore All
             <ArrowRight size={18} />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
 
         {/* GRID */}
-        <div
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
           className="
             mt-12 md:mt-16
             grid
@@ -80,39 +149,104 @@ const Showcase = () => {
             gap-8
           "
         >
-          <div className="md:col-span-2">
+          <motion.div
+            variants={fadeUp}
+            whileHover={{
+              y: -8,
+              scale: 1.01,
+              transition: {
+                duration: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+            className="md:col-span-2"
+          >
             <FeaturedCaseStudy icons={icons1} image={luxePreview} />
-          </div>
+          </motion.div>
 
-          <ShowcaseCard
-            image={novaPreview}
-            title="Project Nova"
-            icons={icons2}
-            description="Real-time AI monitoring dashboard for autonomous logistical fleets."
-          />
+          <motion.div
+            variants={fadeUp}
+            whileHover={{
+              y: -8,
+              scale: 1.015,
+              transition: {
+                duration: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+          >
+            <ShowcaseCard
+              image={novaPreview}
+              title="Project Nova"
+              icons={icons2}
+              description="Real-time AI monitoring dashboard for autonomous logistical fleets."
+            />
+          </motion.div>
 
-          <ShowcaseCard
-            image={novaPreview}
-            title="Project Nova"
-            icons={icons2}
-            description="Real-time AI monitoring dashboard for autonomous logistical fleets."
-          />
+          <motion.div
+            variants={fadeUp}
+            whileHover={{
+              y: -8,
+              scale: 1.015,
+              transition: {
+                duration: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+          >
+            <ShowcaseCard
+              image={novaPreview}
+              title="Project Nova"
+              icons={icons2}
+              description="Real-time AI monitoring dashboard for autonomous logistical fleets."
+            />
+          </motion.div>
 
-          <ShowcaseCard
-            image={novaPreview}
-            title="Project Nova"
-            icons={icons2}
-            description="Real-time AI monitoring dashboard for autonomous logistical fleets."
-          />
+          <motion.div
+            variants={fadeUp}
+            whileHover={{
+              y: -8,
+              scale: 1.015,
+              transition: {
+                duration: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+          >
+            <ShowcaseCard
+              image={novaPreview}
+              title="Project Nova"
+              icons={icons2}
+              description="Real-time AI monitoring dashboard for autonomous logistical fleets."
+            />
+          </motion.div>
 
-          <ShowcaseCard
-            image={novaPreview}
-            title="Project Nova"
-            icons={icons2}
-            description="Real-time AI monitoring dashboard for autonomous logistical fleets."
-          />
+          <motion.div
+            variants={fadeUp}
+            whileHover={{
+              y: -8,
+              scale: 1.015,
+              transition: {
+                duration: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+              },
+            }}
+          >
+            <ShowcaseCard
+              image={novaPreview}
+              title="Project Nova"
+              icons={icons2}
+              description="Real-time AI monitoring dashboard for autonomous logistical fleets."
+            />
+          </motion.div>
 
-          <button
+          <motion.button
+            variants={fadeUp}
+            whileHover={{
+              x: 6,
+              scale: 1.04,
+            }}
+            whileTap={{ scale: 0.96 }}
             className="
               flex
               md:hidden
@@ -126,8 +260,8 @@ const Showcase = () => {
           >
             Explore All
             <ArrowRight size={18} />
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );

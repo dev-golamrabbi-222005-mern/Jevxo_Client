@@ -3,7 +3,7 @@ import centerLogo from "../../assets/center-logo.png"
 const CenterCore = () => {
   return (
     <div className="absolute z-20 flex items-center justify-center w-[200px] h-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      {/* SOLID BLACK/DARK SEMI-TRANSPARENT SHADE BACKING PLATE */}
+      {/* DARK SEMI-TRANSPARENT SHADE BACKING PLATE */}
       <div
         className="
           absolute 

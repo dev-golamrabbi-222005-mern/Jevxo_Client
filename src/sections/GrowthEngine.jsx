@@ -3,14 +3,33 @@ import SectionTitle from "../components/shared/SectionTitle";
 import CenterCore from "../components/ui/CenterCore";
 import OrbitNode from "../components/ui/OrbitNode";
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 
 // ─── Constants
-const SIZE = 650; 
+const SIZE = 650;
 const HALF = SIZE / 2;
 
+// ─── Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
+  }),
+};
+
+const nodeVariants = {
+  hidden: { opacity: 0, scale: 0.6 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.34, 1.56, 0.64, 1], delay },
+  }),
+};
 
 const GrowthEngine = () => {
-  // Stars Generation
+  // RANDOM STARS GENERATE
   const stars = useMemo(() => {
     return Array.from({ length: 250 }).map((_, i) => {
       const random = Math.random();
@@ -70,10 +89,20 @@ const GrowthEngine = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center">
-        <SectionTitle
-          title="The Jevxo Growth Engine"
-          subtitle="A Unified Ecosystem where Strategy, Design, and technology work as one."
-        />
+        {/* Title fades up */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={0}
+          viewport={{ once: true, amount: 0.3 }}
+          className="w-full flex flex-col items-center"
+        >
+          <SectionTitle
+            title="The Jevxo Growth Engine"
+            subtitle="A Unified Ecosystem where Strategy, Design, and technology work as one."
+          />
+        </motion.div>
 
         <div
           className="
@@ -84,18 +113,19 @@ const GrowthEngine = () => {
         >
           {/* Scale wrapper */}
           <div
-            className="
-              absolute
-              scale-[0.44] md:scale-[0.72] lg:scale-100
-            "
+            className="absolute scale-[0.44] md:scale-[0.72] lg:scale-100"
             style={{
               width: SIZE,
               height: SIZE,
               transformOrigin: "center center",
             }}
           >
-            {/* Ambient blue glow */}
-            <div
+            {/* Ambient blue glow — fades in */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 1.2, delay: 0.2 }}
+              viewport={{ once: true }}
               className="absolute rounded-full pointer-events-none"
               style={{
                 width: 950,
@@ -108,14 +138,17 @@ const GrowthEngine = () => {
               }}
             />
 
-            {/* ── SVG axis lines ── */}
-            <svg
+            {/* SVG axis lines — draw in */}
+            <motion.svg
               className="absolute inset-0 pointer-events-none"
               width={SIZE}
               height={SIZE}
               overflow="visible"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
             >
-              {/* Vertical axis */}
               <line
                 x1={HALF}
                 y1={0}
@@ -124,7 +157,6 @@ const GrowthEngine = () => {
                 stroke="#1B2527"
                 strokeWidth="3"
               />
-              {/* Horizontal axis */}
               <line
                 x1={0}
                 y1={HALF}
@@ -133,8 +165,6 @@ const GrowthEngine = () => {
                 stroke="#1B2527"
                 strokeWidth="3"
               />
-
-              {/* Diagonal dashed lines */}
               {[35, -35].map((deg) => {
                 const rad = (deg * Math.PI) / 180;
                 const reach = HALF * 1.05;
@@ -153,54 +183,102 @@ const GrowthEngine = () => {
                   />
                 );
               })}
-            </svg>
+            </motion.svg>
 
-            {/* ── Center core ── */}
-            <CenterCore />
+            {/* Center core — scale up */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.8,
+                ease: [0.34, 1.56, 0.64, 1],
+                delay: 0.4,
+              }}
+              viewport={{ once: true }}
+              className="absolute inset-0"
+            >
+              <CenterCore />
+            </motion.div>
 
             {/* TOP — Marketing */}
-            <OrbitNode
-              icon={<TrendingUp size={32} className="text-[#1B67FF]" />}
-              title="Marketing"
-              subtitle="Growth Synergy"
-              style={{ top: 0, left: HALF, transform: "translate(-50%, -50%)" }}
-            />
+            <motion.div
+              variants={nodeVariants}
+              initial="hidden"
+              whileInView="show"
+              custom={0.55}
+              viewport={{ once: true }}
+            >
+              <OrbitNode
+                icon={<TrendingUp size={32} className="text-[#1B67FF]" />}
+                title="Marketing"
+                subtitle="Growth Synergy"
+                style={{
+                  top: 0,
+                  left: HALF,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            </motion.div>
 
             {/* LEFT — Graphics */}
-            <OrbitNode
-              icon={<Palette size={32} className="text-[#1B67FF]" />}
-              title="Graphics"
-              subtitle="Visual Identity"
-              style={{
-                top: HALF + 25,
-                left: 0,
-                transform: "translate(-50%, -50%)",
-              }}
-            />
+            <motion.div
+              variants={nodeVariants}
+              initial="hidden"
+              whileInView="show"
+              custom={0.65}
+              viewport={{ once: true }}
+            >
+              <OrbitNode
+                icon={<Palette size={32} className="text-[#1B67FF]" />}
+                title="Graphics"
+                subtitle="Visual Identity"
+                style={{
+                  top: HALF + 25,
+                  left: 0,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            </motion.div>
 
             {/* RIGHT — App Dev */}
-            <OrbitNode
-              icon={<Smartphone size={32} className="text-[#1B67FF]" />}
-              title="App Dev"
-              subtitle="Mobile Solutions"
-              style={{
-                top: HALF + 25,
-                left: SIZE,
-                transform: "translate(-50%, -50%)",
-              }}
-            />
+            <motion.div
+              variants={nodeVariants}
+              initial="hidden"
+              whileInView="show"
+              custom={0.75}
+              viewport={{ once: true }}
+            >
+              <OrbitNode
+                icon={<Smartphone size={32} className="text-[#1B67FF]" />}
+                title="App Dev"
+                subtitle="Mobile Solutions"
+                style={{
+                  top: HALF + 25,
+                  left: SIZE,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            </motion.div>
 
             {/* BOTTOM — Web Arch */}
-            <OrbitNode
-              icon={<Globe size={32} className="text-[#1B67FF]" />}
-              title="Web Arch"
-              subtitle="High Performance"
-              style={{
-                top: SIZE,
-                left: HALF,
-                transform: "translate(-50%, -50%)",
-              }}
-            />
+            <motion.div
+              variants={nodeVariants}
+              initial="hidden"
+              whileInView="show"
+              custom={0.85}
+              viewport={{ once: true }}
+            >
+              <OrbitNode
+                icon={<Globe size={32} className="text-[#1B67FF]" />}
+                title="Web Arch"
+                subtitle="High Performance"
+                style={{
+                  top: SIZE,
+                  left: HALF,
+                  transform: "translate(-50%, -50%)",
+                }}
+              />
+            </motion.div>
           </div>
         </div>
       </div>

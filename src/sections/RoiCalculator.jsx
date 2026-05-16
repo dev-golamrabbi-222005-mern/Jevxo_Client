@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
   ComposedChart,
   Area,
@@ -10,7 +11,7 @@ import {
   Tooltip,
 } from "recharts";
 import ServiceCard from "../components/ui/ServiceCard";
-import SectionTitle from "../components/shared/SectionTitle"
+import SectionTitle from "../components/shared/SectionTitle";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -49,12 +50,29 @@ const BUDGET_MIN = 10000;
 const BUDGET_MAX = 200000;
 
 const fmt = (n) => "$" + Math.round(n).toLocaleString("en-US");
-
 const fmtK = (n) => (n === 0 ? "$0k" : `$${Math.round(n / 1000)}k`);
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
+// ─── Animation variants 
 
-// Custom Y-axis tick
+const fadeUp = {
+  hidden: { opacity: 0, y: 36 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
+  }),
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    transition: { duration: 0.8, ease: "easeOut", delay },
+  }),
+};
+
+// ─── Sub-components 
+
 const CustomYTick = ({ x, y, payload }) => (
   <text
     x={x}
@@ -70,7 +88,6 @@ const CustomYTick = ({ x, y, payload }) => (
   </text>
 );
 
-// Custom X-axis tick
 const CustomXTick = ({ x, y, payload }) => (
   <text
     x={x}
@@ -85,7 +102,6 @@ const CustomXTick = ({ x, y, payload }) => (
   </text>
 );
 
-// Custom glowing dot on highlight points
 const GlowingDot = (props) => {
   const { cx, cy, payload } = props;
   if (!payload?.highlight) return null;
@@ -100,7 +116,6 @@ const GlowingDot = (props) => {
   );
 };
 
-// Custom tooltip
 const CustomTooltip = ({ active, payload, label }) => {
   if (!active || !payload?.length) return null;
   return (
@@ -115,7 +130,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   );
 };
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── Main Component
 
 const RoiCalculator = () => {
   const [budget, setBudget] = useState(50000);
@@ -125,7 +140,7 @@ const RoiCalculator = () => {
     setActiveServices((prev) => {
       const next = new Set(prev);
       if (next.has(id)) {
-        if (next.size > 1) next.delete(id); // keep at least one
+        if (next.size > 1) next.delete(id);
       } else {
         next.add(id);
       }
@@ -133,18 +148,14 @@ const RoiCalculator = () => {
     });
   };
 
-  // Compute blended multiplier from selected services
   const blendedMultiplier = useMemo(() => {
     const selected = SERVICES.filter((s) => activeServices.has(s.id));
     if (!selected.length) return 1.5;
-    const avg =
-      selected.reduce((sum, s) => sum + s.multiplier, 0) / selected.length;
-    return avg;
+    return selected.reduce((sum, s) => sum + s.multiplier, 0) / selected.length;
   }, [activeServices]);
 
   const projectedRoi = Math.round(budget * blendedMultiplier);
 
-  // Build 12-month chart data
   const chartData = useMemo(() => {
     const months = ["Now", "M2", "M4", "M6", "M8", "M10", "M12"];
     return months.map((name, i) => {
@@ -160,29 +171,39 @@ const RoiCalculator = () => {
     });
   }, [budget, projectedRoi]);
 
-  // Y-axis range
   const yMax = Math.ceil((projectedRoi * 1.35) / 35000) * 35000;
   const yTicks = [0, yMax * 0.25, yMax * 0.5, yMax * 0.75, yMax].map(
     Math.round,
   );
-
   const sliderPct = ((budget - BUDGET_MIN) / (BUDGET_MAX - BUDGET_MIN)) * 100;
 
   return (
     <section className="relative overflow-hidden py-12 md:py-16 lg:py-20 bg-[#0B0F14]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
         {/* Section heading */}
-        <SectionTitle
-          title={"ROI Calculator"}
-          subtitle={
-            "Discover your potential return on investment with our services"
-          }
-        />
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="show"
+          custom={0}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <SectionTitle
+            title="ROI Calculator"
+            subtitle="Discover your potential return on investment with our services"
+          />
+        </motion.div>
 
         {/* Main card */}
         <div className="grid lg:grid-cols-[480px_1fr] gap-6 md:gap-10 mt-8 md:mt-12 overflow-hidden">
           {/* ── LEFT PANEL ── */}
-          <div className="">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={0.15}
+            viewport={{ once: true, amount: 0.2 }}
+          >
             {/* Budget box */}
             <div className="rounded-2xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B] p-4 md:p-6">
               <div className="flex items-center justify-between">
@@ -238,14 +259,22 @@ const RoiCalculator = () => {
                 <div className="size-2 rounded-full bg-[#15C8FF]" />
               </div>
 
-              <div className="grid  md:grid-cols-2 gap-4 mt-6">
-                {SERVICES.map((s) => (
-                  <ServiceCard
+              <div className="grid md:grid-cols-2 gap-4 mt-6">
+                {SERVICES.map((s, i) => (
+                  <motion.div
                     key={s.id}
-                    service={s}
-                    active={activeServices.has(s.id)}
-                    onClick={() => toggleService(s.id)}
-                  />
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="show"
+                    custom={0.25 + i * 0.08}
+                    viewport={{ once: true }}
+                  >
+                    <ServiceCard
+                      service={s}
+                      active={activeServices.has(s.id)}
+                      onClick={() => toggleService(s.id)}
+                    />
+                  </motion.div>
                 ))}
               </div>
 
@@ -253,25 +282,31 @@ const RoiCalculator = () => {
                 + MORE SERVICE
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* ── RIGHT PANEL: Chart ── */}
-          <div className="relative px-1 py-4 md:p-8 flex flex-col rounded-2xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B]">
+          <motion.div
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="show"
+            custom={0.3}
+            viewport={{ once: true, amount: 0.2 }}
+            className="relative px-1 py-4 md:p-8 flex flex-col rounded-2xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B]"
+          >
             {/* Chart header */}
             <div className="flex flex-col gap-4 mb-6">
               <h2 className="text-xl text-center md:text-left font-semibold text-white">
                 12-Month Projection
               </h2>
 
-              {/* Floating estimate card */}
+              {/* Estimate card */}
               <div className="flex justify-center md:justify-end md:relative">
                 <div className="rounded-2xl md:absolute md:-top-10 md:right-10 md:z-10 bg-linear-to-b from-[#1B1E22] to-[#2C3033] border-y-2 border-[#A3A6A9] backdrop-blur px-12 py-2 text-center self-start">
                   <span className="block text-4xl font-extrabold text-[#F7C93E] tabular-nums leading-none">
                     {fmtK(projectedRoi)}
                   </span>
                   <span className="block text-sm text-[#F7C93E]/80 mt-1">
-                    Estimate return <br />
-                    after 12 month
+                    Estimate return <br /> after 12 month
                   </span>
                 </div>
               </div>
@@ -300,9 +335,7 @@ const RoiCalculator = () => {
                       <stop offset="95%" stopColor="#F7C93E" stopOpacity={0} />
                     </linearGradient>
                   </defs>
-
                   <CartesianGrid horizontal vertical={false} stroke="#151C27" />
-
                   <XAxis
                     dataKey="name"
                     axisLine
@@ -310,7 +343,6 @@ const RoiCalculator = () => {
                     tick={<CustomXTick />}
                     padding={{ left: 10, right: 10 }}
                   />
-
                   <YAxis
                     axisLine
                     tickLine={false}
@@ -319,10 +351,7 @@ const RoiCalculator = () => {
                     ticks={yTicks}
                     width={54}
                   />
-
                   <Tooltip content={<CustomTooltip />} />
-
-                  {/* Filled area under projection */}
                   <Area
                     type="linear"
                     dataKey="projection"
@@ -334,8 +363,6 @@ const RoiCalculator = () => {
                     name="Projected Returns"
                     legendType="none"
                   />
-
-                  {/* Glowing projection line */}
                   <Line
                     type="linear"
                     dataKey="projection"
@@ -349,8 +376,6 @@ const RoiCalculator = () => {
                     name="Projected Returns"
                     legendType="circle"
                   />
-
-                  {/* Dashed investment line */}
                   <Line
                     type="linear"
                     dataKey="investment"
@@ -382,7 +407,7 @@ const RoiCalculator = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

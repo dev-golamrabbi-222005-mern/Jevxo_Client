@@ -6,9 +6,8 @@ import {
   LayoutGrid,
   CheckSquare,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import SectionTitle from "../components/shared/SectionTitle";
-// import techLines from "../assets/techline2.png";
-// import ellipse from "../assets/ellipse1.png";
 
 const Features = () => {
   const features = [
@@ -44,53 +43,86 @@ const Features = () => {
     },
   ];
 
+  // MODERN PREMIUM ANIMATION CONFIGURATIONS
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08, // Smoothly ripples down the grid
+      },
+    },
+  };
+
+  const cardFadeUp = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+      scale: 0.98,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.85,
+        ease: [0.16, 1, 0.3, 1], // Custom premium ease-out curve
+      },
+    },
+  };
+
   return (
     <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20 overflow-hidden">
-      {/* Background Overlays
-      <img
-        src={techLines}
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
-        alt=""
-      />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1D4ED8]/10 blur-[120px] rounded-full pointer-events-none" /> */}
-
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#2E7CF6] to-[#6FE7DD] bg-clip-text text-transparent mb-4">
-            
-          </h2>
-          <p className="text-white/60 text-lg">
-            Affordable plans that scale with your institution
-          </p>
-        </div> */}
+        {/* HEADER SECTION */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+        >
+          <SectionTitle
+            title={"Everything You Need"}
+            subtitle={"Affordable plans that scale with your institution"}
+          />
+        </motion.div>
 
-        <SectionTitle
-          title={"Everything You Need"}
-          subtitle={"Affordable plans that scale with your institution"}
-        />
-
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 md:mt-12">
+        {/* FEATURES GRID */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 md:mt-12"
+        >
           {features.map((feature, i) => (
-            <div
+            <motion.div
               key={i}
-              className="group p-8 flex flex-col justify-center items-center md:justify-start md:items-start rounded-3xl bg-[#13171B] border border-white/8 backdrop-blur-sm hover:border-[#2E7CF6]/30 transition-all duration-300 hover:-translate-y-1.5"
+              variants={cardFadeUp}
+              whileHover={{
+                y: -8,
+                scale: 1.015,
+                borderColor: "rgba(46, 124, 246, 0.35)",
+                transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+              }}
+              className="group p-8 flex flex-col justify-center items-center md:justify-start md:items-start rounded-3xl bg-[#13171B] border border-white/5 backdrop-blur-sm transition-all duration-300"
             >
               {/* Icon Container */}
-              <div className="w-12 h-12 rounded-xl bg-[#1E293B] flex items-center justify-center mb-6 border border-white/10 group-hover:bg-[#2E7CF6]/10 group-hover:border-[#2E7CF6]/20 transition-colors">
-                <feature.icon className="w-6 h-6 text-white/50" />
+              <div className="w-12 h-12 rounded-xl bg-[#1E293B] flex items-center justify-center mb-6 border border-white/10 group-hover:bg-[#2E7CF6]/10 group-hover:border-[#2E7CF6]/20 transition-colors duration-300">
+                <feature.icon className="w-6 h-6 text-white/50 group-hover:text-[#2E7CF6] transition-colors duration-300" />
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-2">
+              {/* Title */}
+              <h3 className="text-xl font-bold text-white mb-2 transition-colors duration-300 group-hover:text-white">
                 {feature.title}
               </h3>
+
+              {/* Description */}
               <p className="text-white/50 text-sm text-center md:text-left leading-relaxed">
                 {feature.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,6 +1,24 @@
 import { Mail, MapPin, Phone, ChevronUp, Share2, Globe } from "lucide-react";
+import { motion } from "framer-motion";
 import logo from "../../assets/logo-footer.png";
 import PrimaryButton from "../shared/PrimaryButton";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
+  }),
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    transition: { duration: 0.8, ease: "easeOut", delay },
+  }),
+};
 
 const Footer = () => {
   const footerLinks = {
@@ -16,7 +34,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-50 items-center mb-12 md:mb-16 lg:mb-20">
           {/* Left Side: Brand & Info */}
-          <div className="md:flex md:justify-between md:items-center lg:block">
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={0}
+            viewport={{ once: true, amount: 0.2 }}
+            className="md:flex md:justify-between md:items-center lg:block"
+          >
             <div className="flex justify-center items-center flex-col md:block">
               <img src={logo} className="h-15 mb-8 lg:ml-12" alt="Jevxo" />
               <h2 className="text-5xl font-semibold text-[#2E7BFF] mb-6">
@@ -34,8 +59,13 @@ const Footer = () => {
                 { icon: MapPin, text: "Rajshahi, Bangladesh" },
                 { icon: Phone, text: "+880123456789" },
               ].map((item, i) => (
-                <div
+                <motion.div
                   key={i}
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  custom={0.1 + i * 0.1}
+                  viewport={{ once: true }}
                   className="flex items-center gap-6 group cursor-pointer"
                 >
                   <div className="flex gap-5 hover:scale-110 hover:-translate-y-2.5 transition-all duration-300">
@@ -44,13 +74,20 @@ const Footer = () => {
                       {item.text}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side: Contact Form */}
-          <form className="space-y-4">
+          <motion.form
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            custom={0.2}
+            viewport={{ once: true, amount: 0.2 }}
+            className="space-y-4"
+          >
             <div className="grid grid-cols-1 gap-5">
               <input
                 type="text"
@@ -78,11 +115,18 @@ const Footer = () => {
             <PrimaryButton type="submit" className="w-full">
               Submit
             </PrimaryButton>
-          </form>
+          </motion.form>
         </div>
 
         {/* Footer Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pt-4 mb-16">
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="show"
+          custom={0.1}
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pt-4 mb-16"
+        >
           <div className="lg:col-span-2">
             <p className="text-white/80 text-center md:text-left max-w-xs mb-8">
               The partner for enterprises building the next generation of
@@ -99,8 +143,16 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          {Object.entries(footerLinks).map(([title, links]) => (
-            <div key={title} className="text-center lg:text-left">
+          {Object.entries(footerLinks).map(([title, links], i) => (
+            <motion.div
+              key={title}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="show"
+              custom={0.15 + i * 0.1}
+              viewport={{ once: true }}
+              className="text-center lg:text-left"
+            >
               <h4 className="text-white/50 text-xs font-bold uppercase tracking-widest mb-6">
                 {title}
               </h4>
@@ -114,16 +166,24 @@ const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
-        <div className="relative pt-16 md:pt-20 lg:pt-24 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+        <motion.div
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="show"
+          custom={0.2}
+          viewport={{ once: true }}
+          className="relative pt-16 md:pt-20 lg:pt-24 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6"
+        >
           <p className="text-white/25 text-sm">
             © {new Date().getFullYear()} Jevxo Enterprise. All rights reserved.
           </p>
-
+          
+          {/* Go to the Top Icon  */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="absolute cursor-pointer -top-4 md:top-10 lg:top-16 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#2E7BFF] rounded-full flex items-center justify-center text-black shadow-lg shadow-[#2E7CF6]/20"
@@ -138,7 +198,7 @@ const Footer = () => {
               <span className="text-green-500">{systemStatus}</span>
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

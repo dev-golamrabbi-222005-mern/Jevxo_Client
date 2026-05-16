@@ -1,8 +1,9 @@
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 import heroOrbit from "../assets/hero-orbit.png";
 import PrimaryButton from "../components/shared/PrimaryButton";
 
-// Stat Card
+// Stats Card
 const StatCard = ({ value, label }) => {
   return (
     <div className="text-center">
@@ -14,8 +15,26 @@ const StatCard = ({ value, label }) => {
   );
 };
 
+// ─── Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay },
+  }),
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    transition: { duration: 0.9, ease: "easeOut", delay },
+  }),
+};
+
 const Hero = () => {
-  //Dynamic Stars
+  // RANDOM STARS GENERATE 
   const stars = useMemo(() => {
     return Array.from({ length: 200 }).map((_, i) => {
       const random = Math.random();
@@ -45,7 +64,6 @@ const Hero = () => {
     });
   }, []);
 
-  // Stats Data
   const statsData = [
     { id: 1, value: "500+", label: "Projects Delivered" },
     { id: 2, value: "98%", label: "Client Satisfaction" },
@@ -108,7 +126,15 @@ const Hero = () => {
           md:pb-17
         "
       >
-        <div
+        {/* ORBIT IMAGE  */}
+        <motion.div
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 1.1,
+            ease: [0.25, 0.46, 0.45, 0.94],
+            delay: 0.3,
+          }}
           className="
             absolute
             -translate-y-1/2
@@ -138,32 +164,41 @@ const Hero = () => {
             duration-500
           "
         >
-          {/* Dedicated Glow behind the Orbit Image */}
-          <div
-            className="
-              absolute
-              top-32
-              inset-0
-              m-auto
-              w-4/5
-              h-4/5
-              bg-[#2E7CF6]/40
-              blur-[100px]
-              rounded-full
-            "
-          />
-
-          <img
-            src={heroOrbit}
-            alt="Hero Orbit"
-            className="relative w-full h-auto z-10 select-none"
-          />
-        </div>
+          {/* Slow continuous float */}
+          <motion.div
+            animate={{ y: [0, -18, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div
+              className="
+                absolute
+                top-32
+                inset-0
+                m-auto
+                w-4/5
+                h-4/5
+                bg-[#2E7CF6]/40
+                blur-[100px]
+                rounded-full
+              "
+            />
+            <img
+              src={heroOrbit}
+              alt="Hero Orbit"
+              className="relative w-full h-auto z-10 select-none"
+            />
+          </motion.div>
+        </motion.div>
 
         <div className="flex flex-col lg:flex-row items-center lg:items-start">
-          {/* LEFT SIDE CONTENT BOUNDS */}
+          {/* LEFT SIDE CONTENT */}
           <div className="w-full lg:max-w-[65%] xl:max-w-3xl text-left">
-            <h1
+            {/* Heading */}
+            <motion.h1
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.1}
               className="
                 text-4xl
                 md:text-5xl
@@ -181,9 +216,14 @@ const Hero = () => {
             >
               Stop Building Sites,
               <br className="hidden md:inline" /> Start Building Empires.
-            </h1>
+            </motion.h1>
 
-            <p
+            {/* Subtitle */}
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.25}
               className="
                 mt-6
                 md:mt-8
@@ -196,12 +236,24 @@ const Hero = () => {
             >
               Transform your vision into a digital empire with cutting-edge
               technology, stunning design, and data-driven strategies.
-            </p>
+            </motion.p>
 
-            <PrimaryButton className="mt-8">See Jevxo</PrimaryButton>
+            {/* CTA Button */}
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="show"
+              custom={0.4}
+            >
+              <PrimaryButton className="mt-8">See Jevxo</PrimaryButton>
+            </motion.div>
 
-            {/* STATS RESPONSIVE GRID CONTAINER */}
-            <div
+            {/* Stats card */}
+            <motion.div
+              variants={fadeIn}
+              initial="hidden"
+              animate="show"
+              custom={0.6}
               className="
                 mt-12
                 md:mt-14
@@ -220,10 +272,18 @@ const Hero = () => {
                 sm:gap-8
               "
             >
-              {statsData.map((stat) => (
-                <StatCard key={stat.id} value={stat.value} label={stat.label} />
+              {statsData.map((stat, i) => (
+                <motion.div
+                  key={stat.id}
+                  variants={fadeUp}
+                  initial="hidden"
+                  animate="show"
+                  custom={0.7 + i * 0.12}
+                >
+                  <StatCard value={stat.value} label={stat.label} />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
