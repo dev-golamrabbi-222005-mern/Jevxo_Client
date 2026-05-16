@@ -95,7 +95,7 @@ const Pricing = () => {
         </div>
 
         {/* CTA Banner */}
-        <div className="flex flex-col items-center justify-between gap-8 py-4">
+        <div className="flex flex-col items-center justify-between gap-8 py-4 pb-8 md:pb-12 lg:pb-16">
           <h2 className="text-3xl md:text-4xl text-center font-bold text-white">
             Ready to modernize your campus?
           </h2>
