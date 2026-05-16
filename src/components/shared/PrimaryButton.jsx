@@ -16,6 +16,7 @@ const PrimaryButton = ({ children, className = "", type = "button" }) => {
         hover:shadow-[0_0_25px_rgba(216,171,90,0.45)]
         active:scale-[0.98]
         ${className}
+        cursor-pointer
       `}
     >
       {children}

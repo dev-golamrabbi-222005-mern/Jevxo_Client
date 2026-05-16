@@ -6,6 +6,7 @@ import {
   LayoutGrid,
   CheckSquare,
 } from "lucide-react";
+import SectionTitle from "../components/shared/SectionTitle";
 // import techLines from "../assets/techline2.png";
 // import ellipse from "../assets/ellipse1.png";
 
@@ -54,18 +55,23 @@ const Features = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#1D4ED8]/10 blur-[120px] rounded-full pointer-events-none" /> */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* Header */}
+        {/* Header
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#2E7CF6] to-[#6FE7DD] bg-clip-text text-transparent mb-4">
-            Everything You Need
+            
           </h2>
           <p className="text-white/60 text-lg">
             Affordable plans that scale with your institution
           </p>
-        </div>
+        </div> */}
+
+        <SectionTitle
+          title={"Everything You Need"}
+          subtitle={"Affordable plans that scale with your institution"}
+        />
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 md:mt-12">
           {features.map((feature, i) => (
             <div
               key={i}

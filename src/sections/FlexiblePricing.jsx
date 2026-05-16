@@ -22,15 +22,6 @@ const FlexiblePricing = () => {
       /> */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        {/* <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#2E7CF6] to-[#6FE7DD] bg-clip-text text-transparent mb-4">
-            Flexible Pricing for Modern Schools
-          </h2>
-          <p className="text-white/60 max-w-xl mx-auto">
-            Scale your institution with our high-performance management
-            platform. Use the calculator below to find your perfect fit.
-          </p>
-        </div> */}
         <SectionTitle
           title="Flexible Pricing for Modern Schools"
           subtitle="Scale your institution with our high-performance management
@@ -40,10 +31,10 @@ const FlexiblePricing = () => {
         <div className="max-w-5xl mx-auto bg-[#13171B] border border-white/10 rounded-3xl mt-8 md:mt-12 p-8 md:p-12 backdrop-blur-xl">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-2">
+              <h3 className="text-2xl text-center md:text-left font-bold text-white mb-2">
                 Interactive Savings Estimator
               </h3>
-              <p className="text-white/40 text-sm">
+              <p className="text-white/40 text-sm text-center md:text-left">
                 Real-time projection based on your student enrollment.
               </p>
             </div>
@@ -66,11 +57,11 @@ const FlexiblePricing = () => {
           </div>
 
           <div className="mb-16">
-            <div className="flex justify-between items-end mb-6">
+            <div className="flex justify-center md:justify-between items-center flex-col md:flex-row md:items-end gap-4 mb-6">
               <span className="text-white/80 font-medium">
                 How many students do you have?
               </span>
-              <div className="text-right">
+              <div className="md:text-right text-center">
                 <span className="text-5xl font-bold text-[#0DB9F2]">
                   {students}
                 </span>
@@ -129,7 +120,7 @@ const FlexiblePricing = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white/5 border border-white/5 rounded-2xl p-8">
+            <div className="bg-white/5 border border-white/5 rounded-2xl p-4 md:p-8 text-center md:text-left">
               <span className="flex gap-2 text-white/40 text-xs uppercase tracking-widest mb-4">
                 <img src={costIcon} alt="" />
                 Estimated Monthly Cost
@@ -141,7 +132,7 @@ const FlexiblePricing = () => {
                 Electric Blue Scalability
               </span>
             </div>
-            <div className=" bg-white/5 border border-white/5 rounded-2xl p-8">
+            <div className=" bg-white/5 border border-white/5 rounded-2xl p-4 md:p-8 text-center md:text-left">
               <span className="flex gap-2 text-white/40 text-xs uppercase tracking-widest mb-4">
                 <img src={savingsIcon} alt="" />
                 Estimated Annual Savings

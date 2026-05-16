@@ -1,4 +1,5 @@
 import { CheckCircle2, GraduationCap, Home, Zap } from "lucide-react";
+import PrimaryButton from "../components/shared/PrimaryButton";
 
 const Pricing = () => {
   const plans = [
@@ -48,7 +49,7 @@ const Pricing = () => {
           {plans.map((plan, i) => (
             <div
               key={i}
-              className={`relative p-8 rounded-2xl border transition-all ${plan.isFeatured ? "bg-[#13171B]/80 rounded-3xl md:scale-110 border-[#FFCE56]/50 shadow-[0_0_40px_rgba(255,206,86,0.1)]" : "bg-[#13171B] border-white/5"}`}
+              className={`relative p-8 rounded-2xl border transition-all ${plan.isFeatured ? "bg-[#13171B]/80 rounded-3xl scale-105 md:scale-110 border-[#FFCE56]/50 shadow-[0_0_40px_rgba(255,206,86,0.1)]" : "bg-[#13171B] border-white/5"}`}
             >
               {plan.isFeatured && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-[#FFCE56] rounded-b-full shadow-[0_0_15px_#FFCE56]" />
@@ -79,25 +80,28 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button
-                className={`w-full py-4 rounded-2xl font-bold transition-all ${plan.isFeatured ? "bg-[#F3B664] text-black" : "border border-white/10 text-white hover:bg-white/5"}`}
-              >
-                {plan.buttonText}
-              </button>
+              {plan.isFeatured ? (
+                <PrimaryButton className="w-full">
+                  {" "}
+                  Upgrade to Pro
+                </PrimaryButton>
+              ) : (
+                <button className="w-full py-4 rounded-2xl font-bold transition-all border border-white/10 text-white hover:bg-white/5">
+                  {plan.buttonText}
+                </button>
+              )}
             </div>
           ))}
         </div>
 
         {/* CTA Banner */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 py-12 px-8 md:px-16 rounded-[40px] bg-gradient-to-r from-[#0A0F1C] to-[#161C2C] border border-white/5">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+        <div className="flex flex-col items-center justify-between gap-8 py-4">
+          <h2 className="text-3xl md:text-4xl text-center font-bold text-white">
             Ready to modernize your campus?
           </h2>
           <div className="flex flex-col sm:flex-row items-center gap-6">
-            <button className="bg-[#F3B664] text-black px-10 py-4 rounded-2xl font-bold whitespace-nowrap shadow-[0_0_30px_rgba(243,182,100,0.2)]">
-              Get Free Personalised Demo
-            </button>
-            <p className="text-white/40 text-sm max-w-[280px]">
+            <PrimaryButton>Get Free Personalised Demo</PrimaryButton>
+            <p className="text-white/40 text-center max-w-xs">
               Join over 4,500+ modern schools already using EduFlow to transform
               education.
             </p>
