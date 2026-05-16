@@ -42,19 +42,21 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="bg-[#020817] py-24 relative overflow-hidden">
+    <section className="bg-[#0B0F14] py-12 md:py-16 lg:py-20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24">
           {plans.map((plan, i) => (
             <div
               key={i}
-              className={`relative p-8 rounded-[32px] border transition-all ${plan.isFeatured ? "bg-[#0A0F1C] border-[#FFCE56]/50 shadow-[0_0_40px_rgba(255,206,86,0.1)]" : "bg-[#0A0F1C]/40 border-white/5"}`}
+              className={`relative p-8 rounded-2xl border transition-all ${plan.isFeatured ? "bg-[#13171B]/80 rounded-3xl md:scale-110 border-[#FFCE56]/50 shadow-[0_0_40px_rgba(255,206,86,0.1)]" : "bg-[#13171B] border-white/5"}`}
             >
               {plan.isFeatured && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-[#FFCE56] rounded-b-full shadow-[0_0_15px_#FFCE56]" />
               )}
 
-              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-8 border border-white/10">
+              <div
+                className={`w-12 h-12 rounded-xl ${plan.isFeatured ? "bg-[#2A2918]" : "bg-[#1F2327]"} flex items-center justify-center mb-8 border border-white/10`}
+              >
                 <plan.icon className="text-[#00D1FF]" size={24} />
               </div>
 

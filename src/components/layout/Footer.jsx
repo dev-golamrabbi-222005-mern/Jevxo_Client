@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#020817] pt-24 pb-12 relative border-t border-white/5">
+    <footer className="bg-[#0B0F14] pt-24 pb-12 relative border-t-3 border-[#2E7BFF]">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-24">
           {/* Left Side: Brand & Info */}
