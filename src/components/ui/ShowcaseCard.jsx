@@ -1,19 +1,18 @@
-import { Monitor, Box, Cloud } from "lucide-react";
 
-const ShowcaseCard = ({ image, title, description }) => {
+const ShowcaseCard = ({ image, title, icons, description }) => {
   return (
     <div
       className="
         rounded-[22px]
         overflow-hidden
         border
-        border-white/15
+        border-[#77797C]
         bg-[#09111E]
         group
         transition-all
         duration-500
         hover:-translate-y-1
-        hover:border-[#2F7CF7]/40
+        hover:border-[#2E7CF6]
       "
     >
       {/* IMAGE */}
@@ -33,16 +32,16 @@ const ShowcaseCard = ({ image, title, description }) => {
       </div>
 
       {/* CONTENT */}
-      <div className="p-6">
+      <div className="p-6 bg-linear-to-b from-[#13171B] to-[#1B1F24]">
         <h3 className="text-2xl font-semibold text-white">{title}</h3>
 
         <p className="mt-3 text-white/45 leading-relaxed">{description}</p>
 
         {/* ICONS */}
-        <div className="flex items-center gap-4 mt-6 text-white/40">
-          <Monitor size={14} />
-          <Box size={14} />
-          <Cloud size={14} />
+        <div className="flex items-center gap-4 mt-6">
+          {icons.map((icon) => (
+            <img src={icon} className="w-5 cursor-pointer" />
+          ))}
         </div>
       </div>
     </div>

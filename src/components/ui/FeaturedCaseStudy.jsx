@@ -1,6 +1,6 @@
-import { Monitor, Box, Cloud, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
-const FeaturedCaseStudy = ({ image }) => {
+const FeaturedCaseStudy = ({ image, icons }) => {
   return (
     <div
       className="
@@ -8,10 +8,14 @@ const FeaturedCaseStudy = ({ image }) => {
         rounded-[24px]
         overflow-hidden
         border
-        border-white/15
+        border-[#77797C]
         bg-[#09111E]
         grid
         md:grid-cols-2
+        transition-all
+        duration-500
+        hover:scale-102
+        hover:border-[#2E7CF6]
       "
     >
       {/* LEFT */}
@@ -85,7 +89,7 @@ const FeaturedCaseStudy = ({ image }) => {
       </div>
 
       {/* RIGHT */}
-      <div className="p-10 flex flex-col justify-between">
+      <div className="p-10 flex flex-col justify-between bg-linear-to-b from-[#0A0E13] to-[#1B1F24]">
         <div>
           <p
             className="
@@ -125,10 +129,10 @@ const FeaturedCaseStudy = ({ image }) => {
 
         {/* FOOTER */}
         <div className="flex items-center justify-between mt-10">
-          <div className="flex items-center gap-5 text-white/35">
-            <Monitor size={16} />
-            <Box size={16} />
-            <Cloud size={16} />
+          <div className="flex items-center gap-5">
+            {icons.map((icon) => (
+              <img src={icon} className="cursor-pointer" />
+            ))}
           </div>
 
           <button

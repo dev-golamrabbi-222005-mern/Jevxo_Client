@@ -21,7 +21,7 @@ const SectionTitle = ({ title, subtitle, center = true }) => {
 
       <p
         className="
-          mt-4
+          mt-3
           text-white/65
           text-sm
           md:text-base

@@ -9,6 +9,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import ServiceCard from "../components/ui/ServiceCard";
+import SectionTitle from "../components/shared/SectionTitle"
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -51,40 +53,6 @@ const fmt = (n) => "$" + Math.round(n).toLocaleString("en-US");
 const fmtK = (n) => (n === 0 ? "$0k" : `$${Math.round(n / 1000)}k`);
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
-
-const ServiceCard = ({ service, active, onClick }) => (
-  <button
-    onClick={onClick}
-    className={`
-      relative rounded-2xl border p-5 text-left transition-all duration-300 w-full
-      ${
-        active
-          ? "border-[#15C8FF] bg-[#0D2A33] shadow-[0_0_25px_rgba(21,200,255,0.12)]"
-          : "border-white/10 bg-[#09111E] hover:border-white/20"
-      }
-    `}
-  >
-    <div className="flex items-start justify-between gap-2">
-      <div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-base leading-none">{service.icon}</span>
-          <h3 className="text-white text-base font-medium leading-snug">
-            {service.title}
-          </h3>
-        </div>
-        <p className="mt-3 text-[#15C8FF]/60 text-xs font-bold tracking-wider">
-          {service.label}
-        </p>
-      </div>
-      <div
-        className={`
-          mt-0.5 size-4 shrink-0 rounded-full border transition-colors
-          ${active ? "bg-[#F7D047] border-[#F7D047]" : "border-white/20"}
-        `}
-      />
-    </div>
-  </button>
-);
 
 // Custom Y-axis tick
 const CustomYTick = ({ x, y, payload }) => (
@@ -201,45 +169,33 @@ const RoiCalculator = () => {
   const sliderPct = ((budget - BUDGET_MIN) / (BUDGET_MAX - BUDGET_MIN)) * 100;
 
   return (
-    <section className="relative overflow-hidden py-28 bg-[#020817]">
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-40"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <section className="relative overflow-hidden py-12 md:py-16 lg:py-20 bg-[#0B0F14]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
         {/* Section heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl font-extrabold bg-gradient-to-r from-[#15C8FF] to-[#1B67FF] bg-clip-text text-transparent">
-            ROI Calculator
-          </h2>
-          <p className="mt-3 text-white/50 text-lg">
-            Discover your potential return on investment with our services
-          </p>
-        </div>
+        <SectionTitle
+          title={"ROI Calculator"}
+          subtitle={
+            "Discover your potential return on investment with our services"
+          }
+        />
 
         {/* Main card */}
-        <div className="rounded-[28px] border border-[#1B67FF] bg-[#060D18]/80 backdrop-blur-xl grid lg:grid-cols-[480px_1fr] overflow-hidden">
+        <div className="grid lg:grid-cols-[480px_1fr] gap-6 md:gap-10 mt-8 md:mt-12 overflow-hidden">
           {/* ── LEFT PANEL ── */}
-          <div className="p-8 border-r border-[#1B67FF]">
+          <div className="">
             {/* Budget box */}
-            <div className="rounded-3xl bg-[#09111E] border border-white/10 p-6">
+            <div className="rounded-2xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B] p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <p className="text-white/55 font-semibold text-sm tracking-widest">
                   YOUR BUDGET
                 </p>
-                <div className="px-4 py-2 rounded-xl border border-[#15C8FF]/40 text-[#15C8FF] font-bold text-sm">
+                <div className="px-4 py-2 rounded-xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B] text-[#15C8FF] font-bold tracking-wide">
                   {fmt(budget)}
                 </div>
               </div>
 
               {/* Custom slider */}
-              <div className="mt-8 relative">
+              <div className="mt-5 relative">
                 <div className="relative h-[6px] rounded-full bg-[#12354A]">
                   <div
                     className="absolute left-0 top-0 h-full rounded-full bg-[#15C8FF] transition-all"
@@ -263,18 +219,18 @@ const RoiCalculator = () => {
               </div>
 
               {/* Projected ROI display */}
-              <div className="mt-14 border-t border-white/10 pt-10 text-center">
-                <p className="text-white/40 tracking-[0.25em] text-sm">
+              <div className="mt-8 border-t border-white/10 pt-5 text-center">
+                <span className="text-white/40 tracking-[0.25em] text-sm flex items-center justify-center">
                   PROJECTED ROI
-                </p>
-                <h3 className="mt-3 text-[#F7C93E] text-6xl font-bold tabular-nums leading-none">
-                  {fmt(projectedRoi)}
-                </h3>
+                  <span className="text-[#F7C93E] text-4xl font-bold ml-5 tabular-nums leading-none">
+                    {fmt(projectedRoi)}
+                  </span>
+                </span>
               </div>
             </div>
 
             {/* Service selector */}
-            <div className="mt-10">
+            <div className="mt-10 bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B] p-4 md:p-6 rounded-2xl">
               <div className="flex items-center gap-2">
                 <h3 className="text-white/60 font-semibold text-sm tracking-widest">
                   SELECT SERVICES
@@ -282,7 +238,7 @@ const RoiCalculator = () => {
                 <div className="size-2 rounded-full bg-[#15C8FF]" />
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mt-6">
+              <div className="grid  md:grid-cols-2 gap-4 mt-6">
                 {SERVICES.map((s) => (
                   <ServiceCard
                     key={s.id}
@@ -293,38 +249,40 @@ const RoiCalculator = () => {
                 ))}
               </div>
 
-              <button className="mt-6 mx-auto block px-5 py-2 rounded-xl border border-white/10 bg-white/5 text-white/70 text-sm hover:bg-white/10 transition-colors">
+              <button className="mt-6 mx-auto block px-5 py-2 rounded-xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B] text-white/70 text-sm hover:bg-white/10 transition-colors">
                 + MORE SERVICE
               </button>
             </div>
           </div>
 
           {/* ── RIGHT PANEL: Chart ── */}
-          <div className="relative p-8 flex flex-col">
+          <div className="relative px-1 py-4 md:p-8 flex flex-col rounded-2xl bg-linear-to-b from-[#02060B] to-[#171B21] border border-[#1E242B]">
             {/* Chart header */}
-            <div className="flex items-start justify-between mb-6">
-              <h2 className="text-xl font-semibold text-white">
+            <div className="flex flex-col gap-4 mb-6">
+              <h2 className="text-xl text-center md:text-left font-semibold text-white">
                 12-Month Projection
               </h2>
 
               {/* Floating estimate card */}
-              <div className="rounded-2xl border border-[#3C414A]/60 bg-[#0D1525]/80 backdrop-blur px-5 py-4 text-center relative">
-                <div className="absolute -top-px left-1/2 -translate-x-1/2 w-12 h-px bg-white/20 rounded-full" />
-                <span className="block text-3xl font-extrabold text-[#F7C93E] tabular-nums leading-none">
-                  {fmtK(projectedRoi)}
-                </span>
-                <span className="block text-xs text-[#F7C93E]/80 mt-1">
-                  Estimate return after 12 month
-                </span>
+              <div className="flex justify-center md:justify-end md:relative">
+                <div className="rounded-2xl md:absolute md:-top-10 md:right-10 md:z-10 bg-linear-to-b from-[#1B1E22] to-[#2C3033] border-y-2 border-[#A3A6A9] backdrop-blur px-12 py-2 text-center self-start">
+                  <span className="block text-4xl font-extrabold text-[#F7C93E] tabular-nums leading-none">
+                    {fmtK(projectedRoi)}
+                  </span>
+                  <span className="block text-sm text-[#F7C93E]/80 mt-1">
+                    Estimate return <br />
+                    after 12 month
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Chart */}
-            <div className="flex-1 min-h-[420px]">
+            <div className="flex-1 min-h-[200px] md:min-h-[420px] bg-[#0C1014] rounded-lg p-3">
               <ResponsiveContainer width="100%" height="100%">
                 <ComposedChart
                   data={chartData}
-                  margin={{ top: 10, right: 20, left: 10, bottom: 10 }}
+                  margin={{ top: 10, right: 0, left: 0, bottom: 10 }}
                 >
                   <defs>
                     <linearGradient
@@ -343,23 +301,18 @@ const RoiCalculator = () => {
                     </linearGradient>
                   </defs>
 
-                  <CartesianGrid
-                    strokeDasharray="4 6"
-                    horizontal
-                    vertical={false}
-                    stroke="#111827"
-                  />
+                  <CartesianGrid horizontal vertical={false} stroke="#151C27" />
 
                   <XAxis
                     dataKey="name"
-                    axisLine={false}
+                    axisLine
                     tickLine={false}
                     tick={<CustomXTick />}
                     padding={{ left: 10, right: 10 }}
                   />
 
                   <YAxis
-                    axisLine={false}
+                    axisLine
                     tickLine={false}
                     tick={<CustomYTick />}
                     domain={[0, yMax]}
@@ -414,23 +367,17 @@ const RoiCalculator = () => {
             </div>
 
             {/* Legend + footnote */}
-            <div className="mt-4 flex items-center justify-between">
-              <p className="text-xs text-white/35">
+            <div className="mt-4 md:mt-6 flex flex-col-reverse text-center">
+              <p className="text-xs text-white/35 pt-2">
                 Estimates based on client performance
               </p>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center justify-center gap-6 text-center border-b-2 border-[#374256] pb-2">
                 <span className="flex items-center gap-2 text-xs text-white/50">
-                  <span
-                    className="inline-block w-5 h-0.5 bg-[#15C8FF] rounded-full"
-                    style={{
-                      borderTop: "2px dashed #15C8FF",
-                      background: "none",
-                    }}
-                  />
+                  <span className="inline-block w-3 h-3 bg-[#15C8FF] rounded-full" />
                   Your Investment
                 </span>
                 <span className="flex items-center gap-2 text-xs text-white/50">
-                  <span className="inline-block w-5 h-0.5 bg-[#F7C93E] rounded-full" />
+                  <span className="inline-block w-3 h-3 bg-[#F7C93E] rounded-full" />
                   Projected Returns
                 </span>
               </div>

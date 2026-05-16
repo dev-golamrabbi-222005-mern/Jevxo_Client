@@ -41,7 +41,7 @@ const GrowthEngine = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden px-4 md:px-6 py-12 md:py-16 lg:py-20 bg-[#020817]">
+    <section className="relative overflow-hidden px-4 md:px-6 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-28 lg:pb-40 bg-[#020817]">
       {/* Grid Lines */}
       <div
         className="absolute inset-0 opacity-50"
@@ -77,7 +77,7 @@ const GrowthEngine = () => {
 
         <div
           className="
-            relative mt-16 md:mt-24 lg:mt-28
+            relative mt-12 md:mt-20 lg:mt-28
             w-full flex items-center justify-center
             h-[312px] md:h-[468px] lg:h-[650px]
           "
