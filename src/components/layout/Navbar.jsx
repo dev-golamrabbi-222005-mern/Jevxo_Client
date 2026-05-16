@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6">
         <nav
           className="
-            h-16
+            h-auto
             rounded-2xl
             border
             border-white/10
@@ -30,6 +30,8 @@ const Navbar = () => {
             items-center
             justify-between
             px-6
+            py-3
+            md:py-2
             relative
           "
         >
