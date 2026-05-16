@@ -1,0 +1,154 @@
+import { Monitor, Box, Cloud, ExternalLink } from "lucide-react";
+
+const FeaturedCaseStudy = ({ image }) => {
+  return (
+    <div
+      className="
+        lg:col-span-2
+        rounded-[24px]
+        overflow-hidden
+        border
+        border-white/15
+        bg-[#09111E]
+        grid
+        md:grid-cols-2
+      "
+    >
+      {/* LEFT */}
+      <div className="relative bg-[#E9E9E9]">
+        <img src={image} alt="LuxePay" className="w-full h-full object-cover" />
+
+        {/* CENTER LINE */}
+        <div
+          className="
+            absolute
+            top-0
+            left-1/2
+            -translate-x-1/2
+            w-[3px]
+            h-full
+            bg-[#1B67FF]
+          "
+        >
+          <div
+            className="
+              absolute
+              top-1/2
+              left-1/2
+              -translate-x-1/2
+              -translate-y-1/2
+              size-10
+              rounded-full
+              bg-[#1B67FF]
+              flex
+              items-center
+              justify-center
+              text-white
+            "
+          >
+            +
+          </div>
+        </div>
+
+        {/* TAGS */}
+        <div className="absolute top-4 left-4">
+          <span
+            className="
+              px-3
+              py-1
+              rounded-md
+              bg-[#5A5A5A]
+              text-white
+              text-xs
+              font-medium
+            "
+          >
+            LEGACY UI
+          </span>
+        </div>
+
+        <div className="absolute top-4 right-4">
+          <span
+            className="
+              px-3
+              py-1
+              rounded-md
+              bg-[#5E89FF]
+              text-white
+              text-xs
+              font-medium
+            "
+          >
+            JEVXO REVAMP
+          </span>
+        </div>
+      </div>
+
+      {/* RIGHT */}
+      <div className="p-10 flex flex-col justify-between">
+        <div>
+          <p
+            className="
+              text-[#F7D047]
+              text-xs
+              tracking-[0.25em]
+              font-semibold
+            "
+          >
+            FINTECH • CASE STUDY
+          </p>
+
+          <h3
+            className="
+              mt-5
+              text-4xl
+              font-semibold
+              text-white
+            "
+          >
+            LuxePay Revolution
+          </h3>
+
+          <p
+            className="
+              mt-5
+              text-white/45
+              text-lg
+              leading-relaxed
+              max-w-[450px]
+            "
+          >
+            A complete digital overhaul of a high-net-worth payment processor,
+            resulting in a 40% reduction in churn...
+          </p>
+        </div>
+
+        {/* FOOTER */}
+        <div className="flex items-center justify-between mt-10">
+          <div className="flex items-center gap-5 text-white/35">
+            <Monitor size={16} />
+            <Box size={16} />
+            <Cloud size={16} />
+          </div>
+
+          <button
+            className="
+              size-11
+              rounded-full
+              bg-white/10
+              flex
+              items-center
+              justify-center
+              border
+              border-white/10
+            "
+          >
+            <ExternalLink size={18} className="text-white" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default FeaturedCaseStudy;
