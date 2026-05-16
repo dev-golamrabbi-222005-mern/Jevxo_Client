@@ -69,7 +69,7 @@ const Features = () => {
           {features.map((feature, i) => (
             <div
               key={i}
-              className="group p-8 rounded-3xl bg-[#13171B] border border-white/8 backdrop-blur-sm hover:border-[#2E7CF6]/30 transition-all duration-300 hover:-translate-y-1.5"
+              className="group p-8 flex flex-col justify-center items-center md:justify-start md:items-start rounded-3xl bg-[#13171B] border border-white/8 backdrop-blur-sm hover:border-[#2E7CF6]/30 transition-all duration-300 hover:-translate-y-1.5"
             >
               {/* Icon Container */}
               <div className="w-12 h-12 rounded-xl bg-[#1E293B] flex items-center justify-center mb-6 border border-white/10 group-hover:bg-[#2E7CF6]/10 group-hover:border-[#2E7CF6]/20 transition-colors">
@@ -79,7 +79,7 @@ const Features = () => {
               <h3 className="text-xl font-bold text-white mb-2">
                 {feature.title}
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed">
+              <p className="text-white/50 text-sm text-center md:text-left leading-relaxed">
                 {feature.desc}
               </p>
             </div>

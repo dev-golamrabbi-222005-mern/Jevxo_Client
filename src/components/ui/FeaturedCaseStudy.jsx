@@ -4,6 +4,7 @@ const FeaturedCaseStudy = ({ image, icons }) => {
   return (
     <div
       className="
+      h-full
         lg:col-span-2
         rounded-[24px]
         overflow-hidden

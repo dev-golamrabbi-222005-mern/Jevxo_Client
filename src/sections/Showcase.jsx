@@ -70,11 +70,15 @@ const Showcase = () => {
           className="
             mt-12 md:mt-16
             grid
+            grid-cols-1
+            md:grid-cols-2
             lg:grid-cols-3
             gap-8
           "
         >
-          <FeaturedCaseStudy icons={icons1} image={luxePreview} />
+          <div className="md:col-span-2">
+            <FeaturedCaseStudy icons={icons1} image={luxePreview} />
+          </div>
 
           <ShowcaseCard
             image={novaPreview}

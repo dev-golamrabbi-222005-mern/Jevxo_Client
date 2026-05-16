@@ -2,6 +2,7 @@ import techLines from "../assets/techline2.png"; // Adjust path as needed
 import ellipse from "../assets/ellipse1.png";
 import PrimaryButton from "../components/shared/PrimaryButton"; // Using your existing component
 import eduImg from "../assets/Video Animation.png"
+import SectionTitle from "../components/shared/SectionTitle";
 
 const Education = () => {
   const stats = [
@@ -25,19 +26,16 @@ const Education = () => {
       />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-        {/* Header Content */}
-        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#2E7CF6] to-[#6FE7DD] bg-clip-text text-transparent mb-6">
-          Transform education with Jevxo Edu
-        </h1>
-        <p className="text-white/70 max-w-2xl mx-auto text-lg">
-          Complete school management solution that saves time, reduces costs,
-          and improves educational outcomes.
-        </p>
+        <SectionTitle
+          title="Transform education with Jevxo Edu"
+          subtitle="Complete school management solution that saves time, reduces costs,
+          and improves educational outcomes."
+        />
 
         {/* Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 my-8">
+        <div className="flex justify-center gap-4 my-8">
           <PrimaryButton>Start Free Trial</PrimaryButton>
-          <button className="px-8 py-3 rounded-xl font-semibold border border-white/10 bg-white/5 backdrop-blur-md text-white/80 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+          <button className="px-5 py-3 rounded-xl font-semibold border border-white/10 bg-white/5 backdrop-blur-md text-white/80 hover:bg-white/10 transition-all shadow-[0_0_15px_rgba(255,255,255,0.05)]">
             Watch video
           </button>
         </div>
@@ -58,7 +56,9 @@ const Education = () => {
               <span className="text-4xl font-bold text-[#36A9CC] mb-1">
                 {stat.value}
               </span>
-              <span className="text-white font-semibold tracking-wide text-2xl">{stat.label}</span>
+              <span className="text-white font-semibold tracking-wide text-2xl">
+                {stat.label}
+              </span>
             </div>
           ))}
         </div>
