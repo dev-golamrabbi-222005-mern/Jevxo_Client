@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/logo-navbar.png";
+import switchBody from "../../assets/switch-body.png";
 import PrimaryButton from "../shared/PrimaryButton";
 import { ChevronDown, Lock, Menu, X } from "lucide-react";
 
@@ -11,11 +12,62 @@ const NAV_LINKS = [
   { label: "Partnership", href: "#" },
 ];
 
+const ToggleSwitch = () => {
+  const [isOn, setIsOn] = useState(false);
+
+  return (
+    <div className="flex items-center gap-3">
+      <Lock size={18} className="text-[#2E7CF6]" />
+      <div
+        onClick={() => setIsOn(!isOn)}
+        className="
+          w-14
+          h-8
+          rounded-full
+          relative
+          border
+          border-white/10
+          cursor-pointer
+          bg-cover
+          bg-center
+          bg-no-repeat
+          transition-all
+          duration-300
+        "
+        style={{ 
+          backgroundImage: `url(${switchBody})`,
+          // Optional: Add a subtle grayscale or opacity filter when turned off 
+          filter: isOn ? "none" : "grayscale(30%) brightness(80%)" 
+        }}
+      >
+        {/* TOGGLE THUMB HANDLE */}
+        <div
+          className={`
+            absolute
+            top-1/2
+            left-1
+            -translate-y-1/2
+            size-6
+            rounded-full
+            bg-white
+            shadow-md
+            transition-all
+            duration-300
+            ease-in-out
+            ${isOn ? "translate-x-6" : "translate-x-0"}
+          `}
+        />
+      </div>
+    </div>
+  );
+};
+
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full absolute top-0 left-0 z-50">
+    <header className="w-full fixed top-0 left-0 z-50">
       <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6">
         <nav
           className="
@@ -64,36 +116,7 @@ const Navbar = () => {
               Launch Your Project
             </PrimaryButton>
 
-            {/* Toggle Switch Panel */}
-            <div className="flex items-center gap-3">
-              <Lock size={18} className="text-[#2E7CF6]" />
-              <div
-                className="
-                  w-14
-                  h-8
-                  rounded-full
-                  bg-gradient-to-r
-                  from-[#615CFF]
-                  to-[#8C52FF]
-                  relative
-                  border
-                  border-white/10
-                  cursor-pointer
-                "
-              >
-                <div
-                  className="
-                    absolute
-                    top-1/2
-                    left-1
-                    -translate-y-1/2
-                    size-6
-                    rounded-full
-                    bg-white
-                  "
-                />
-              </div>
-            </div>
+           <ToggleSwitch/>
 
             {/* Mobile Burger Menu Button */}
             <button

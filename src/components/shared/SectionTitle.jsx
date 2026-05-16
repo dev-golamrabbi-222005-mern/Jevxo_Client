@@ -26,7 +26,7 @@ const SectionTitle = ({ title, subtitle, center = true }) => {
           text-sm
           md:text-base
           tracking-wide
-          max-w-xl
+          max-w-[600px]
           mx-auto
         "
       >
