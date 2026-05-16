@@ -56,6 +56,8 @@ const Showcase = () => {
               text-[#2E7CF6]
               font-medium
               hidden
+              cursor-pointer
+              hover:underline
             "
           >
             Explore All
@@ -111,8 +113,7 @@ const Showcase = () => {
               gap-2
               text-[#2E7CF6]
               font-medium
-              hover:bg-
-              
+              hover:underline
             "
           >
             Explore All
