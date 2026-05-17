@@ -67,9 +67,10 @@ const Showcase = () => {
         bg-[#0B0F14]
       "
     >
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-        <Decors3/>
+        <div className="hidden md:block">
+          <Decors3 />
+        </div>
         {/* HEADER */}
         <motion.div
           className="relative"

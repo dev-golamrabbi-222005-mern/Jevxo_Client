@@ -56,7 +56,9 @@ const Pricing = () => {
   return (
     <section className="bg-[#0B0F14] py-12 md:py-16 lg:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <Decors7/>
+        <div className="hidden md:block">
+          <Decors7 />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24 relative z-0">
           {plans.map((plan, i) => (
             <motion.div

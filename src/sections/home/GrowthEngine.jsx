@@ -89,9 +89,10 @@ const GrowthEngine = () => {
         ))}
       </div>
 
-
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center">
-      <Decors1/>
+        <div className="hidden md:block">
+          <Decors1 />
+        </div>
         {/* Title fades up */}
         <motion.div
           variants={fadeUp}
@@ -285,7 +286,7 @@ const GrowthEngine = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 w-full h-44 bg-gradient-to-b from-transparent to-[#0B0F14] pointer-events-none z-10" />
+      <div className="absolute bottom-0 w-full h-44 bg-gradient-to-b from-transparent to-[#0B0F14] pointer-events-none" />
     </section>
   );
 };

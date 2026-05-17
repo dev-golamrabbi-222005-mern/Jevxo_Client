@@ -181,7 +181,9 @@ const RoiCalculator = () => {
   return (
     <section className="relative py-12 md:py-16 lg:py-20 bg-[#0B0F14]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-        <Decors2/>
+        <div className="hidden md:block">
+          <Decors2 />
+        </div>
         {/* Section heading */}
         <motion.div
           variants={fadeUp}

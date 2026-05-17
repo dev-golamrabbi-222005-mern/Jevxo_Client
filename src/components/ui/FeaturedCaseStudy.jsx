@@ -6,7 +6,7 @@ const FeaturedCaseStudy = ({ image, icons }) => {
       className="
         h-full
         lg:col-span-2
-        rounded-[24px]
+        rounded-3xl
         relative
         z-0
         border
@@ -21,8 +21,8 @@ const FeaturedCaseStudy = ({ image, icons }) => {
       "
     >
       {/* LEFT */}
-      <div className="relative bg-[#E9E9E9]">
-        <img src={image} alt="LuxePay" className="w-full h-full object-cover" />
+      <div className="relative bg-[#E9E9E9] rounded-3xl">
+        <img src={image} alt="LuxePay" className="w-full h-full rounded-t-3xl md:rounded-l-3xl object-cover" />
 
         {/* CENTER LINE */}
         <div
@@ -93,7 +93,7 @@ const FeaturedCaseStudy = ({ image, icons }) => {
       </div>
 
       {/* RIGHT */}
-      <div className="p-10 flex flex-col justify-between bg-linear-to-b from-[#0A0E13] to-[#1B1F24]">
+      <div className="p-10 flex flex-col justify-between bg-linear-to-b from-[#0A0E13] to-[#1B1F24] rounded-b-3xl md:rounded-r-3xl">
         <div>
           <p
             className="

@@ -74,7 +74,9 @@ const Features = () => {
   return (
     <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20">
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-       <Decors5/>
+        <div className="hidden md:block">
+          <Decors5 />
+        </div>
         {/* HEADER SECTION */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
