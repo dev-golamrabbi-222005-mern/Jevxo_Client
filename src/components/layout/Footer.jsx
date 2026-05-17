@@ -33,7 +33,9 @@ const Footer = () => {
   return (
     <footer className="bg-[#0B0F14] pt-12 md:pt-16 lg:pt-20 pb-8 relative border-t-3 border-[#2E7BFF] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <Decors8/>
+        <div className="hidden md:block">
+          <Decors8 />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-50 items-center mb-12 md:mb-16 lg:mb-20">
           {/* Left Side: Brand & Info */}
           <motion.div
@@ -184,7 +186,7 @@ const Footer = () => {
           <p className="text-white/25 text-sm">
             © {new Date().getFullYear()} Jevxo Enterprise. All rights reserved.
           </p>
-          
+
           {/* Go to the Top Icon  */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

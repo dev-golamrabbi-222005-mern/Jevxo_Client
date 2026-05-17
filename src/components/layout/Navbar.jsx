@@ -91,7 +91,7 @@ const Navbar = () => {
       className="w-full fixed top-0 left-0 z-50"
     >
       <div className="w-full" style={{ overflowX: "clip" }}>
-        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-6 w-screen md:w-auto">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 pt-2 md:pt-4 lg:pt-6 w-screen md:w-auto">
           <motion.nav
             whileHover={{ borderColor: "rgba(255,255,255,0.16)" }}
             className="

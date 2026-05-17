@@ -1,4 +1,3 @@
-// Decors8.jsx
 import ellipse1 from "../../../assets/ellipse1.png";
 import ellipse6 from "../../../assets/ellipse6.png";
 import ellipse4 from "../../../assets/ellipse4.png";

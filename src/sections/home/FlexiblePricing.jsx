@@ -54,7 +54,7 @@ const FlexiblePricing = () => {
 
   return (
     <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20 z-0">
-      <div className="relative z-0 max-w-7xl mx-auto px-4">
+      <div className="relative z-0 max-w-7xl mx-auto px-4 md:px-6">
         <div className="hidden md:block">
           <Decors6 />
         </div>

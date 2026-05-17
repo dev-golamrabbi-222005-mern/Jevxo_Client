@@ -73,7 +73,7 @@ const Features = () => {
 
   return (
     <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20">
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
         <div className="hidden md:block">
           <Decors5 />
         </div>
@@ -106,7 +106,7 @@ const Features = () => {
                 y: -8,
                 scale: 1.015,
                 borderColor: "rgba(46, 124, 246, 0.35)",
-                transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+                transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
               }}
               className="group p-8 flex flex-col justify-center items-center md:justify-start md:items-start rounded-3xl bg-[#13171B] border border-white/5 backdrop-blur-sm transition-all duration-300"
             >

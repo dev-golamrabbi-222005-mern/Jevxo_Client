@@ -55,7 +55,7 @@ const Education = () => {
       <div className="hidden md:block">
         <Decors4 />
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 text-center">
         {/* TITLE */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
