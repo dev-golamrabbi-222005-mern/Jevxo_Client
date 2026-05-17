@@ -12,10 +12,8 @@ const ServiceCard = ({ service, active, onClick }) => (
   >
     <div className="flex items-start justify-between gap-2">
       <div>
-        <div className="flex items-center gap-2 mb-1">
-          <span className="text-[#94A3B8] leading-none bg-[#1E293B] p-2 rounded-xl">
-            {service.icon}
-          </span>
+        <div className="flex items-center gap-3 mb-1">
+          <img src={service.icon} className="text-[#94A3B8] leading-none bg-[#1E293B] p-4 rounded-xl"/>
           <h3 className="text-white text-base font-medium leading-snug">
             {service.title}
           </h3>

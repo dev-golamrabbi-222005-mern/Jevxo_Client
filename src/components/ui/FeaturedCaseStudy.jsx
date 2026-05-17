@@ -134,8 +134,8 @@ const FeaturedCaseStudy = ({ image, icons }) => {
         {/* FOOTER */}
         <div className="flex items-center justify-between mt-10">
           <div className="flex items-center gap-5">
-            {icons.map((icon) => (
-              <img src={icon} className="cursor-pointer" />
+            {icons.map((icon, index) => (
+              <img src={icon} key={index} className="cursor-pointer" />
             ))}
           </div>
 

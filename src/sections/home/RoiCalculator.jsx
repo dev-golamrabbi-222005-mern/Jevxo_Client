@@ -1,5 +1,9 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import webIcon from "../../assets/icons/language.png"
+import phnIcon from "../../assets/icons/smartphone.png"
+import growthIcon from "../../assets/icons/trending_up.png"
+import brushIcon from "../../assets/icons/brush.png"
 import {
   ComposedChart,
   Area,
@@ -22,28 +26,28 @@ const SERVICES = [
     title: "Web Development",
     multiplier: 1.5,
     label: "1.5X MULTIPLIER",
-    icon: "🌐",
+    icon: webIcon,
   },
   {
     id: "app",
     title: "App Development",
     multiplier: 2.0,
     label: "2X MULTIPLIER",
-    icon: "📱",
+    icon: phnIcon,
   },
   {
     id: "marketing",
     title: "Digital Marketing",
     multiplier: 3.0,
     label: "3X MULTIPLIER",
-    icon: "📈",
+    icon: growthIcon,
   },
   {
     id: "branding",
     title: "Branding & Design",
     multiplier: 1.8,
     label: "1.8X MULTIPLIER",
-    icon: "✏️",
+    icon: brushIcon,
   },
 ];
 

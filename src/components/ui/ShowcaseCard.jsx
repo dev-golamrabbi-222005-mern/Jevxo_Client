@@ -39,8 +39,8 @@ const ShowcaseCard = ({ image, title, icons, description }) => {
 
         {/* ICONS */}
         <div className="flex items-center gap-4 mt-6">
-          {icons.map((icon) => (
-            <img src={icon} className="w-5 cursor-pointer" />
+          {icons.map((icon, index) => (
+            <img src={icon} key={index} className="w-5 cursor-pointer" />
           ))}
         </div>
       </div>
