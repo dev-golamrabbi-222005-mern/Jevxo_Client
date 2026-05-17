@@ -2,6 +2,7 @@ import { Mail, MapPin, Phone, ChevronUp, Share2, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "../../assets/logo-footer.png";
 import PrimaryButton from "../shared/PrimaryButton";
+import Decors8 from "../ui/Decors/Decors8";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -30,8 +31,9 @@ const Footer = () => {
   const systemStatus = "Online";
 
   return (
-    <footer className="bg-[#0B0F14] pt-12 md:pt-16 lg:pt-20 pb-8 relative border-t-3 border-[#2E7BFF]">
+    <footer className="bg-[#0B0F14] pt-12 md:pt-16 lg:pt-20 pb-8 relative border-t-3 border-[#2E7BFF] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
+        <Decors8/>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-50 items-center mb-12 md:mb-16 lg:mb-20">
           {/* Left Side: Brand & Info */}
           <motion.div
@@ -66,9 +68,9 @@ const Footer = () => {
                   whileInView="show"
                   custom={0.1 + i * 0.1}
                   viewport={{ once: true }}
-                  className="flex items-center gap-6 group cursor-pointer"
+                  className="flex items-center gap-6 group"
                 >
-                  <div className="flex gap-5 hover:scale-110 hover:-translate-y-2.5 transition-all duration-300">
+                  <div className="flex gap-5 hover:scale-110 hover:-translate-y-2.5 transition-all duration-300 cursor-pointer">
                     <item.icon className="text-[#FD7E1E]" size={22} />
                     <span className="text-[#2E7BFF] text-lg tracking-wide">
                       {item.text}
@@ -104,12 +106,12 @@ const Footer = () => {
               <input
                 type="url"
                 placeholder="Website*"
-                className="w-full bg-white text-black p-4 rounded-xl outline-none"
+                className="w-full bg-white text-black p-4 rounded-xl outline-none z-30"
               />
               <textarea
                 placeholder="Message"
                 rows={4}
-                className="w-full bg-white text-black p-4 rounded-xl outline-none resize-none"
+                className="w-full bg-white text-black p-4 rounded-xl outline-none resize-none z-30"
               />
             </div>
             <PrimaryButton type="submit" className="w-full">

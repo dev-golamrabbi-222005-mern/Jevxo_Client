@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-import techLines from "../assets/techline3.png";
-import costIcon from "../assets/icons/cost-icon.png";
-import savingsIcon from "../assets/icons/savings-icon.png";
+import costIcon from "../../assets/icons/cost-icon.png";
+import savingsIcon from "../../assets/icons/savings-icon.png";
 
-import SectionTitle from "../components/shared/SectionTitle";
+import SectionTitle from "../../components/shared/SectionTitle";
+import Decors6 from "../../components/ui/Decors/Decors6";
 
 
 const FlexiblePricing = () => {
@@ -53,19 +53,9 @@ const FlexiblePricing = () => {
   };
 
   return (
-    <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20 overflow-hidden">
-      {/* BACKGROUND */}
-      <motion.img
-        src={techLines}
-        className="absolute inset-0 w-full opacity-20 pointer-events-none"
-        alt=""
-        initial={{ opacity: 0, scale: 1.08 }}
-        whileInView={{ opacity: 0.2, scale: 1 }}
-        transition={{ duration: 1.4 }}
-        viewport={{ once: true }}
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
+    <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20 z-0">
+      <div className="relative z-0 max-w-7xl mx-auto px-4">
+      <Decors6/>
         {/* TITLE */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -122,7 +112,6 @@ const FlexiblePricing = () => {
             overflow-hidden
           "
         >
-          {/* INNER GLOW */}
           <motion.div
             variants={floatingAnimation}
             animate="animate"
@@ -130,11 +119,7 @@ const FlexiblePricing = () => {
               absolute
               -top-20
               right-0
-              w-[300px]
-              h-[300px]
-              rounded-full
-              bg-[#00D1FF]/10
-              blur-[120px]
+              
               pointer-events-none
             "
           />

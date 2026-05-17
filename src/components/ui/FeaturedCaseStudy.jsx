@@ -4,10 +4,11 @@ const FeaturedCaseStudy = ({ image, icons }) => {
   return (
     <div
       className="
-      h-full
+        h-full
         lg:col-span-2
         rounded-[24px]
-        overflow-hidden
+        relative
+        z-0
         border
         border-[#77797C]
         bg-[#09111E]

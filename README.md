@@ -1,4 +1,5 @@
 JEVXO - Landing Page
+
 The partner for enterprises building the next generation of digital empires.
 
 Technologies used: React.js & Tailwind-CSS

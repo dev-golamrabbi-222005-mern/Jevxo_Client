@@ -1,20 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-import SectionTitle from "../components/shared/SectionTitle";
-import ShowcaseCard from "../components/ui/ShowcaseCard";
-import FeaturedCaseStudy from "../components/ui/FeaturedCaseStudy";
+import SectionTitle from "../../components/shared/SectionTitle";
+import ShowcaseCard from "../../components/ui/ShowcaseCard";
+import FeaturedCaseStudy from "../../components/ui/FeaturedCaseStudy";
 
-import techLine from "../assets/techline2.png";
-import ellipse from "../assets/ellipse1.png";
-import jsIcon from "../assets/icons/js-icon.png";
-import boxIcon from "../assets/icons/box-icon.png";
-import meshIcon from "../assets/icons/mesh-icon.png";
-import growthIcon from "../assets/icons/growth-icon.png";
-import terminalIcon from "../assets/icons/terminal-icon.png";
-import cloudIcon from "../assets/icons/cloud-icon.png";
-import luxePreview from "../assets/luxe-preview.png";
-import novaPreview from "../assets/nova-preview.png";
+import jsIcon from "../../assets/icons/js-icon.png";
+import boxIcon from "../../assets/icons/box-icon.png";
+import meshIcon from "../../assets/icons/mesh-icon.png";
+import growthIcon from "../../assets/icons/growth-icon.png";
+import terminalIcon from "../../assets/icons/terminal-icon.png";
+import cloudIcon from "../../assets/icons/cloud-icon.png";
+import luxePreview from "../../assets/luxe-preview.png";
+import novaPreview from "../../assets/nova-preview.png";
+import Decors3 from "../../components/ui/Decors/Decors3";
 
 const Showcase = () => {
   const icons1 = [jsIcon, boxIcon, meshIcon];
@@ -64,31 +63,13 @@ const Showcase = () => {
     <section
       className="
         relative
-        overflow-hidden
         py-12 md:py-16 lg:py-20
         bg-[#0B0F14]
       "
     >
-      {/* DECOR */}
-      <motion.img
-        src={techLine}
-        alt=""
-        className="absolute left-0 top-0 opacity-50 pointer-events-none"
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 0.5, x: 0 }}
-        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        viewport={{ once: true }}
-      />
-
-      <motion.img
-        src={ellipse}
-        alt=""
-        className="absolute right-0 top-0 opacity-40 pointer-events-none"
-        variants={floatingAnimation}
-        animate="animate"
-      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
+        <Decors3/>
         {/* HEADER */}
         <motion.div
           className="relative"
@@ -141,12 +122,14 @@ const Showcase = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           className="
+            relative
             mt-12 md:mt-16
             grid
             grid-cols-1
             md:grid-cols-2
             lg:grid-cols-3
             gap-8
+            z-10
           "
         >
           <motion.div

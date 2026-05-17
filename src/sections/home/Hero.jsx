@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
-import heroOrbit from "../assets/hero-orbit.png";
-import PrimaryButton from "../components/shared/PrimaryButton";
+import heroOrbit from "../../assets/hero-orbit.png";
+import PrimaryButton from "../../components/shared/PrimaryButton";
 
 // Stats Card
 const StatCard = ({ value, label }) => {
@@ -76,7 +76,7 @@ const Hero = () => {
         relative
         w-full
         overflow-hidden
-        bg-[#020817]
+        bg-[#0B0F14]
         flex
         items-start       
         md:items-center
@@ -89,8 +89,9 @@ const Hero = () => {
           inset-0
           opacity-50
           [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px)]
-          [background-size:30px_30px]
+          [background-size:35px_40px]
           pointer-events-none
+          z-20
         "
       />
 
@@ -175,10 +176,10 @@ const Hero = () => {
                 top-32
                 inset-0
                 m-auto
-                w-4/5
-                h-4/5
-                bg-[#2E7CF6]/40
-                blur-[100px]
+                w-[80%]
+                h-[70%]
+                bg-[#096af1]
+                blur-[222px]
                 rounded-full
               "
             />
@@ -257,6 +258,8 @@ const Hero = () => {
               className="
                 mt-12
                 md:mt-14
+                md:mb-2.75
+                lg:-mb-5
                 w-full
                 sm:w-fit
                 rounded-2xl
@@ -287,6 +290,8 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      {/* Bottom fade — blends into next section */}
+      <div className="absolute bottom-0 right-0 w-full h-44 bg-gradient-to-b from-transparent to-[#0B0F14] pointer-events-none z-10" />
     </section>
   );
 };

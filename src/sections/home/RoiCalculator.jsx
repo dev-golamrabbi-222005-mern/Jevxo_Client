@@ -10,8 +10,9 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import ServiceCard from "../components/ui/ServiceCard";
-import SectionTitle from "../components/shared/SectionTitle";
+import ServiceCard from "../../components/ui/ServiceCard";
+import SectionTitle from "../../components/shared/SectionTitle";
+import Decors2 from "../../components/ui/Decors/Decors2";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -178,8 +179,9 @@ const RoiCalculator = () => {
   const sliderPct = ((budget - BUDGET_MIN) / (BUDGET_MAX - BUDGET_MIN)) * 100;
 
   return (
-    <section className="relative overflow-hidden py-12 md:py-16 lg:py-20 bg-[#0B0F14]">
+    <section className="relative py-12 md:py-16 lg:py-20 bg-[#0B0F14]">
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
+        <Decors2/>
         {/* Section heading */}
         <motion.div
           variants={fadeUp}

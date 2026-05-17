@@ -1,13 +1,13 @@
 import React from "react";
 import { FaGithub, FaLinkedin, FaGlobe, FaUserCircle } from "react-icons/fa";
-import Hero from "../../sections/Hero";
-import GrowthEngine from "../../sections/GrowthEngine";
-import Showcase from "../../sections/Showcase";
-import RoiCalculator from "../../sections/RoiCalculator";
-import Education from "../../sections/Education";
-import Features from "../../sections/Features";
-import FlexiblePricing from "../../sections/FlexiblePricing";
-import Pricing from "../../sections/Pricing";
+import Hero from "../../sections/home/Hero";
+import GrowthEngine from "../../sections/home/GrowthEngine";
+import Showcase from "../../sections/home/Showcase";
+import RoiCalculator from "../../sections/home/RoiCalculator";
+import Education from "../../sections/home/Education";
+import Features from "../../sections/home/Features";
+import FlexiblePricing from "../../sections/home/FlexiblePricing";
+import Pricing from "../../sections/home/Pricing";
 
 const Home = () => {
   return (

@@ -1,9 +1,10 @@
 import { Palette, Smartphone, Globe, TrendingUp } from "lucide-react";
-import SectionTitle from "../components/shared/SectionTitle";
-import CenterCore from "../components/ui/CenterCore";
-import OrbitNode from "../components/ui/OrbitNode";
+import SectionTitle from "../../components/shared/SectionTitle";
+import CenterCore from "../../components/ui/CenterCore";
+import OrbitNode from "../../components/ui/OrbitNode";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
+import Decors1 from "../../components/ui/Decors/Decors1";
 
 // ─── Constants
 const SIZE = 650;
@@ -60,15 +61,15 @@ const GrowthEngine = () => {
   }, []);
 
   return (
-    <section className="relative px-4 md:px-6 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-28 lg:pb-40 bg-[#020817]">
+    <section className="relative px-4 md:px-6 pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-28 lg:pb-40 bg-[#0B0F14] overflow-visible">
       {/* Grid Lines */}
       <div
-        className="absolute inset-0 opacity-50"
+        className="absolute inset-0 opacity-50 overflow-visible z-20"
         style={{
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px)," +
             "linear-gradient(to right,rgba(255,255,255,0.04) 1px,transparent 1px)",
-          backgroundSize: "30px 30px",
+          backgroundSize: "35px 40px",
         }}
       />
 
@@ -88,7 +89,9 @@ const GrowthEngine = () => {
         ))}
       </div>
 
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center">
+      <Decors1/>
         {/* Title fades up */}
         <motion.div
           variants={fadeUp}
@@ -282,6 +285,7 @@ const GrowthEngine = () => {
           </div>
         </div>
       </div>
+      <div className="absolute bottom-0 w-full h-44 bg-gradient-to-b from-transparent to-[#0B0F14] pointer-events-none z-10" />
     </section>
   );
 };

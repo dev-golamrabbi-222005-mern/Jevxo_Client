@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 
-import techLines from "../assets/techline2.png";
-import ellipse from "../assets/ellipse1.png";
-import eduImg from "../assets/Video Animation.png";
+import eduImg from "../../assets/Video Animation.png";
 
-import PrimaryButton from "../components/shared/PrimaryButton";
-import SectionTitle from "../components/shared/SectionTitle";
+import PrimaryButton from "../../components/shared/PrimaryButton";
+import SectionTitle from "../../components/shared/SectionTitle";
+import Decors4 from "../../components/ui/Decors/Decors4";
 
 
 const Education = () => {
@@ -52,26 +51,8 @@ const Education = () => {
   };
 
   return (
-    <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20 overflow-hidden">
-      {/* Background Assets */}
-      <motion.img
-        src={techLines}
-        className="absolute top-0 left-0 w-full opacity-40 pointer-events-none"
-        alt=""
-        initial={{ opacity: 0, x: -40 }}
-        whileInView={{ opacity: 0.4, x: 0 }}
-        transition={{ duration: 1.2 }}
-        viewport={{ once: true }}
-      />
-
-      <motion.img
-        src={ellipse}
-        className="absolute -bottom-20 -right-20 w-1/2 opacity-30 blur-3xl pointer-events-none"
-        alt=""
-        variants={floatingAnimation}
-        animate="animate"
-      />
-
+    <section className="relative bg-[#0B0F14] py-12 md:py-16 lg:py-20">
+      <Decors4/>
       <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
         {/* TITLE */}
         <motion.div

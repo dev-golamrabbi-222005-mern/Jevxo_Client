@@ -1,6 +1,7 @@
 import { CheckCircle2, GraduationCap, Home, Zap } from "lucide-react";
 import { motion } from "framer-motion";
-import PrimaryButton from "../components/shared/PrimaryButton";
+import PrimaryButton from "../../components/shared/PrimaryButton";
+import Decors7 from "../../components/ui/Decors/Decors7";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 36 },
@@ -53,9 +54,10 @@ const Pricing = () => {
   ];
 
   return (
-    <section className="bg-[#0B0F14] py-12 md:py-16 lg:py-20 relative overflow-hidden">
+    <section className="bg-[#0B0F14] py-12 md:py-16 lg:py-20 relative">
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24">
+        <Decors7/>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24 relative z-0">
           {plans.map((plan, i) => (
             <motion.div
               key={i}
